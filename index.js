@@ -1,7 +1,5 @@
 const mineflayer = require('mineflayer')
 
-console.log("hi");
-
 const bot = mineflayer.createBot({
   host: 'mc.hypixel.net', // optional
   port: 25565,       // optional
@@ -10,17 +8,9 @@ const bot = mineflayer.createBot({
   version: false                 // false corresponds to auto version detection (that's the default), put for example "1.8.8" if you need a specific version
 })
 
-console.log("connected");
+console.log("Connected!");
 
 bot.on('message', function (messageJson) {
-  let message = "";
-    if(messageJson.json.extra != undefined){
-      messageJson.json.extra.forEach(val => {
-        message += val.text;
-      })
-    }
-  console.log(message);
-  if(messageJson.json.text){
     let message;
     if(messageJson.json.text) message = messageJson.json.text;
     else message = "";
@@ -29,17 +19,25 @@ bot.on('message', function (messageJson) {
         message += val.text;
       })
     }
+  console.log(message);
+  if(messageJson.json.text == "From "){
+    message = message.replace("From ", "");
     let sender;
     if(message.split(":")[0].split(" ").length == 2){
       sender = message.split(":")[0].split(" ")[1];
-    } k=ekse u===else {
+    //} else if(message.split(":")[0].split(" ").length == 3){
+    //  
+    } else {
       sender = message.split(":")[0]
     }
     
     let cmd = message.split(":")[1];
+    let args = cmd.split(" ");
+    args.shift();
     
-    console.log(sender);
-    console.log(cmd);
+    
     
   }
 })
+
+bot._client.write("chat", {message:"/msg cqptain test"})
