@@ -86,7 +86,10 @@ function getStats(sender, args){
         break;
       }
       case("SkyWars"):{
-        sendMessage(sender, `- Level: ${obj.player.achievements.skywars_you_re_a_star}, XP: ${obj.player.achievements.skywars_experience}`)
+        sendMessage(sender, `- Level: ${obj.player.achievements.skywars_you_re_a_star}, XP: ${stats.skywars_experience}`)
+        sendMessage(sender, `- Wins: ${stats.wins}, Losses: ${stats.losses}`)
+        sendMessage(sender, `- Kills: ${stats.kills}, Deaths: ${stats.deaths}`)
+        sendMessage(sender, `- WLR: ${Number.parseFloat(stats.wins/stats.losses).toFixed(2)}, KDR: ${Number.parseFloat(stats.kills/stats.deaths).toFixed(2)}`)
         break;
       }
       default:{
