@@ -1,4 +1,5 @@
 const mineflayer = require('mineflayer')
+const hypixel = require('hypixel-api-nodejs');
 
 const bot = mineflayer.createBot({
   host: 'mc.hypixel.net', // optional
@@ -19,7 +20,7 @@ bot.on('message', function (messageJson) {
         message += val.text;
       })
     }
-  console.log(message);
+  //console.log(message);
   if(messageJson.json.text == "From "){
     message = message.replace("From ", "");
     let sender;
@@ -35,12 +36,31 @@ bot.on('message', function (messageJson) {
     let args = cmd.split(" ");
     args.shift();
     
+    if(args.length == 0) return sendMessage(sender, "Specify a command (message the bot 'help' for a list of commands)")
+    
     if(args[0] == "help"){
       sendMessage(sender, "List of commands");
+    } else {
+      getStats(sender, args);
     }
     
   }
 })
+
+function getStats(sender, args){
+  let gamemode = args[0];
+  
+  let player;
+  
+  if(args.length == 1) player = sender;
+  else player = args[1];
+  
+  hypixel.getPlayerByName(process.env.APIKEY, player).then(player => {
+    console.log(player.stats[gamemode]);
+  })
+  
+  
+}
 
 function sendMessage(username, message){
   console.log(`To ${username}: ${message}`)
