@@ -1,5 +1,6 @@
 dependencies:
   express: 4.17.1
+  mineflayer: 2.30.0
   sqlite3: 4.1.1
 packages:
   /abbrev/1.1.1:
@@ -15,6 +16,10 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha512-Il80Qs2WjYlJIBNzNkK6KYqlVMTbZLXgHx2oT0pU/fjRHyEp+PEfEPY0R3WCwAGVOtauxh1hOxNgIf5bv7dQpA==
+  /aes-js/3.1.2:
+    dev: false
+    resolution:
+      integrity: sha512-e5pEa2kBnBOgR4Y/p20pskXI74UEz7de8ZGVo58asOtvSVG5YAbJeELPZxOmt+Bnz3rX753YKhfIn4X4l1PPRQ==
   /ajv/6.10.2:
     dependencies:
       fast-deep-equal: 2.0.1
@@ -24,6 +29,15 @@ packages:
     dev: false
     resolution:
       integrity: sha512-TXtUUEYHuaTEbLZWIKUr5pmBuhDLy+8KYtPYdcV8qC+pOZL+NKqYwvWSRrVXHn+ZmRRAu8vJTAznH7Oag6RVRw==
+  /ajv/6.12.6:
+    dependencies:
+      fast-deep-equal: 3.1.3
+      fast-json-stable-stringify: 2.1.0
+      json-schema-traverse: 0.4.1
+      uri-js: 4.4.0
+    dev: false
+    resolution:
+      integrity: sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==
   /ansi-regex/2.1.1:
     dev: false
     engines:
@@ -51,6 +65,14 @@ packages:
     dev: false
     resolution:
       integrity: sha1-ml9pkFGx5wczKPKgCJaLZOopVdI=
+  /asap/1.0.0:
+    dev: false
+    resolution:
+      integrity: sha1-sqRdpf36ILBJb8N2jMJ8EvqRan0=
+  /asn1/0.2.3:
+    dev: false
+    resolution:
+      integrity: sha1-2sh4dxPJlmhJ/IGAd36+nB3fO4Y=
   /asn1/0.2.4:
     dependencies:
       safer-buffer: 2.1.2
@@ -109,6 +131,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA==
+  /buffer-equal/1.0.0:
+    dev: false
+    engines:
+      node: '>=0.4.0'
+    resolution:
+      integrity: sha1-WWFrSYME1Var1GaWayLu2j7KX74=
   /bytes/3.1.0:
     dev: false
     engines:
@@ -119,6 +147,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw=
+  /centra/2.4.2:
+    dev: false
+    resolution:
+      integrity: sha512-f1RaP0V1HqVNEXfLfjNBthB2yy3KnSGnPCnOPCFLUk9e/Z4rNJ8nBaJNnghflnp88mi1IT8mfmW+HlMS1/H+bg==
   /chownr/1.1.3:
     dev: false
     resolution:
@@ -137,6 +169,10 @@ packages:
       node: '>= 0.8'
     resolution:
       integrity: sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==
+  /commander/2.20.3:
+    dev: false
+    resolution:
+      integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
   /concat-map/0.0.1:
     dev: false
     resolution:
@@ -193,6 +229,14 @@ packages:
     dev: false
     resolution:
       integrity: sha512-mel+jf7nrtEl5Pn1Qx46zARXKDpBbvzezse7p7LqINmdoIk8PYP5SySaxEmYv6TZ0JyEKA1hsCId6DIhgITtWQ==
+  /debug/4.2.0:
+    dependencies:
+      ms: 2.1.2
+    dev: false
+    engines:
+      node: '>=6.0'
+    resolution:
+      integrity: sha512-IX2ncY78vDTjZMFUdmsvIRFY2Cf4FnD0wRs+nQwJU8Lu99/tPFdb0VybiiMTPe3I6rQmwsqQqRBvxU+bZ/I8sg==
   /deep-extend/0.6.0:
     dev: false
     engines:
@@ -226,6 +270,10 @@ packages:
     hasBin: true
     resolution:
       integrity: sha1-+hN8S9aY7fVc1c0CrFWfkaTEups=
+  /discontinuous-range/1.0.0:
+    dev: false
+    resolution:
+      integrity: sha1-44Mx8IRLukm5qctxx3FYWqsbxlo=
   /ecc-jsbn/0.1.2:
     dependencies:
       jsbn: 0.1.1
@@ -243,6 +291,10 @@ packages:
       node: '>= 0.8'
     resolution:
       integrity: sha1-rT/0yG7C0CkyL1oCw6mmBslbP1k=
+  /endian-toggle/0.0.0:
+    dev: false
+    resolution:
+      integrity: sha1-5cx1eLEDLW7gHq/Nc3ZdsNtNwKY=
   /escape-html/1.0.3:
     dev: false
     resolution:
@@ -253,6 +305,12 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=
+  /event-promise/0.0.1:
+    dependencies:
+      promise: 5.0.0
+    dev: false
+    resolution:
+      integrity: sha1-7lmd9hNyaxLPhXTncU20gjx9uHc=
   /express/4.17.1:
     dependencies:
       accepts: 1.3.7
@@ -310,6 +368,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-ewUhjd+WZ79/Nwv3/bLLFf3Qqkk=
+  /fast-deep-equal/3.1.3:
+    dev: false
+    resolution:
+      integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==
   /fast-json-stable-stringify/2.1.0:
     dev: false
     resolution:
@@ -540,6 +602,22 @@ packages:
       '0': node >=0.6.0
     resolution:
       integrity: sha1-MT5mvB5cwG5Di8G3SZwuXFastqI=
+  /lodash.get/4.4.2:
+    dev: false
+    resolution:
+      integrity: sha1-LRd/ZS+jHpObRDjVNBSZ36OCXpk=
+  /lodash.merge/4.6.2:
+    dev: false
+    resolution:
+      integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==
+  /lodash.reduce/4.6.0:
+    dev: false
+    resolution:
+      integrity: sha1-8atrg5KZrUj3hKu/R2WW8DuRTTs=
+  /macaddress/0.5.1:
+    dev: false
+    resolution:
+      integrity: sha512-et8b+V48uHaOB2fyNhPWwlm2PenfcfkGmHUwuVT3lxFEhfwaKwq5VmM4Cw4MYDwMrujvF0ktA2sSJidCjZBSzg==
   /media-typer/0.3.0:
     dev: false
     engines:
@@ -577,6 +655,52 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==
+  /minecraft-data/2.69.1:
+    dev: false
+    resolution:
+      integrity: sha512-7WXt/D+sM+RqpiQJsNiqfwXWwjOBs9bWKZvhTCRyarxS6pEoJC4x61D1Nss+wWqSCmi0ZbAPwVact2jPWHcSKg==
+  /minecraft-protocol/1.17.0:
+    dependencies:
+      aes-js: 3.1.2
+      buffer-equal: 1.0.0
+      debug: 4.2.0
+      endian-toggle: 0.0.0
+      lodash.get: 4.4.2
+      lodash.merge: 4.6.2
+      minecraft-data: 2.69.1
+      node-rsa: 0.4.2
+      prismarine-nbt: 1.3.0
+      protodef: 1.8.2
+      readable-stream: 3.6.0
+      uuid-1345: 1.0.2
+      yggdrasil: 1.3.0
+    dev: false
+    engines:
+      node: '>=6'
+    resolution:
+      integrity: sha512-tF4e3qqo75+LVAPFS7u6YbLPs9xFFXOirVHArHBLg7uSs9wJ8tFzYXUZdR7cqwnKXelRkMM9/QhgeTYcJKR7bw==
+  /mineflayer/2.30.0:
+    dependencies:
+      minecraft-data: 2.69.1
+      minecraft-protocol: 1.17.0
+      prismarine-biome: /prismarine-biome/1.1.1/minecraft-data@2.69.1
+      prismarine-block: /prismarine-block/1.7.1/minecraft-data@2.69.1
+      prismarine-chat: 1.0.2
+      prismarine-chunk: 1.20.3
+      prismarine-entity: 1.0.0
+      prismarine-item: /prismarine-item/1.5.0/minecraft-data@2.69.1
+      prismarine-physics: 1.0.8
+      prismarine-recipe: /prismarine-recipe/1.1.0/minecraft-data@2.69.1
+      prismarine-windows: /prismarine-windows/1.6.0/minecraft-data@2.69.1
+      prismarine-world: 3.1.0
+      protodef: 1.8.2
+      typed-emitter: 1.3.1
+      vec3: 0.1.7
+    dev: false
+    engines:
+      node: '>=10'
+    resolution:
+      integrity: sha512-apYidHvykMH9Adtzz71Hfr81x1yA3zpgjDeuZ9FAlKcA2z9+KzwejmG/mTWx+i5VXePNDE9C38Q+ST3yoX9e6A==
   /minimatch/3.0.4:
     dependencies:
       brace-expansion: 1.1.11
@@ -611,6 +735,16 @@ packages:
     hasBin: true
     resolution:
       integrity: sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=
+  /mojangson/1.1.1:
+    dependencies:
+      nearley: 2.19.7
+    dev: false
+    resolution:
+      integrity: sha512-CVZDJdiiLOibTBfzpDz1m7QfWlna9yOwaVTz+wHARtlc/nb9QFLvP8OWAqaPQ14ETa4pDRGhWVN9O8pjsPjEcg==
+  /moo/0.5.1:
+    dev: false
+    resolution:
+      integrity: sha512-I1mnb5xn4fO80BH9BLcF0yLypy2UKl+Cb01Fu0hJRkJjlCRtxZMWkTdAtDd5ZqCOxtCkhmRwyI57vWT+1iZ67w==
   /ms/2.0.0:
     dev: false
     resolution:
@@ -627,6 +761,17 @@ packages:
     dev: false
     resolution:
       integrity: sha512-INOFj37C7k3AfaNTtX8RhsTw7qRy7eLET14cROi9+5HAVbbHuIWUHEauBv5qT4Av2tWasiTY1Jw6puUNqRJXQg==
+  /nearley/2.19.7:
+    dependencies:
+      commander: 2.20.3
+      moo: 0.5.1
+      railroad-diagrams: 1.0.0
+      randexp: 0.4.6
+      semver: 5.7.1
+    dev: false
+    hasBin: true
+    resolution:
+      integrity: sha512-Y+KNwhBPcSJKeyQCFjn8B/MIe+DDlhaaDgjVldhy5xtFewIbiQgcbZV8k2gCVwkI1ZsKCnjIYZbR+0Fim5QYgg==
   /needle/2.4.0:
     dependencies:
       debug: 3.2.6
@@ -660,6 +805,12 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-TwWAOZb0j7e9eGaf9esRx3ZcLaE5tQ2lvYy1pb5IAaG1a2e2Kv5Lms1Y4hpj+ciXJRofIxxlt5haeQ/2ANeE0Q==
+  /node-rsa/0.4.2:
+    dependencies:
+      asn1: 0.2.3
+    dev: false
+    resolution:
+      integrity: sha1-1jkXKewWqDDtWjgEKzFX0tXXJTA=
   /nopt/4.0.1:
     dependencies:
       abbrev: 1.1.1
@@ -763,10 +914,134 @@ packages:
     dev: false
     resolution:
       integrity: sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
+  /phin/3.5.0:
+    dependencies:
+      centra: 2.4.2
+    dev: false
+    engines:
+      node: '>= 8'
+    resolution:
+      integrity: sha512-BEJYqD07B5uBFPAzNpLuLh0LzHr4MDLe0Vc6gBYi+PSIL57VbiE/UvkCc86x24pKQn2X2Keg7HTJEDr8BrBCCg==
+  /prismarine-biome/1.1.1/minecraft-data@2.69.1:
+    dependencies:
+      minecraft-data: 2.69.1
+    dev: false
+    id: registry.npmjs.org/prismarine-biome/1.1.1
+    peerDependencies:
+      minecraft-data: ^2.0.0
+    resolution:
+      integrity: sha512-JkX1CcIDR538j5Qj3pbLCTB2LsGukNOudWbk4niQ93a3fItLVJkPnY9H3/uxpVz2PIQxhmaAXVRaYWj6M9C2Bw==
+  /prismarine-block/1.7.1/minecraft-data@2.69.1:
+    dependencies:
+      minecraft-data: 2.69.1
+      prismarine-biome: /prismarine-biome/1.1.1/minecraft-data@2.69.1
+    dev: false
+    id: registry.npmjs.org/prismarine-block/1.7.1
+    peerDependencies:
+      minecraft-data: ^2.62.1
+    resolution:
+      integrity: sha512-hIKUnNHx9/jcXU8RNVlCnmYajpBSSfc4tvhPyZGnUtGbqlpWs7gNkYy7BZnDRIlwfECmxggjrEIJ9WvOqpCFTg==
+  /prismarine-chat/1.0.2:
+    dependencies:
+      minecraft-data: 2.69.1
+      mojangson: 1.1.1
+      sprintf-js: 1.1.2
+    dev: false
+    resolution:
+      integrity: sha512-HXDNb8dOmrrWhguHXR+NIdrxs09ZTZ0FtPvd21+N6lPwjyhTTN0v4Vzs/7yco6pqhQV9Lm4UIvc6zrf1G6wPWw==
+  /prismarine-chunk/1.20.3:
+    dependencies:
+      minecraft-data: 2.69.1
+      prismarine-block: /prismarine-block/1.7.1/minecraft-data@2.69.1
+      smart-buffer: 4.1.0
+      uint4: 0.1.2
+      vec3: 0.1.7
+    dev: false
+    engines:
+      node: '>=12'
+    resolution:
+      integrity: sha512-Rb1DyxrRo/D87qJjJh1cDoy3d7Qp+q1O8vLR5Jb7uNMekb370SlXI0Ka9lBZDZoNUQiNWAgJBip+zc0mSFr1lQ==
+  /prismarine-entity/1.0.0:
+    dependencies:
+      vec3: 0.1.7
+    dev: false
+    resolution:
+      integrity: sha512-n7Cdi/t4CkKMaSrQCpF8FEjxvVBD/Mqj0d+SlDNQK9HKD5XRej4t+RvsQdV3HfYEyGL3hG5BA5WgGj1ri2Q7Ow==
+  /prismarine-item/1.5.0/minecraft-data@2.69.1:
+    dependencies:
+      minecraft-data: 2.69.1
+    dev: false
+    id: registry.npmjs.org/prismarine-item/1.5.0
+    peerDependencies:
+      minecraft-data: ^2.35.0
+    resolution:
+      integrity: sha512-O0Rpxn0kqHhkJAVJJK7SvkVyoNkBU7tRh7FrGJipg23B6j1cw8GtkSY10keupI2p0AcygA9TrlHBwomVLl7uYw==
+  /prismarine-nbt/1.3.0:
+    dependencies:
+      protodef: 1.8.2
+    dev: false
+    resolution:
+      integrity: sha512-QDXP3uaoZGFo0WsTq6yTxL/s+Syt/7wKhD5Jlq+2Ilfx0b8r8h6SlrashUnhgin7S2JKDytvQRRJu0aZfCHhTQ==
+  /prismarine-physics/1.0.8:
+    dependencies:
+      prismarine-nbt: 1.3.0
+      vec3: 0.1.7
+    dev: false
+    resolution:
+      integrity: sha512-3G0SsojMhA0IUEmU4RJ7ZsfUwsTp0eBmM/ql9Hfu+/SXRdOBtn6vn11lkxzj+gLkX0tnjOAz9UxIFgpV1EQSbA==
+  /prismarine-recipe/1.1.0/minecraft-data@2.69.1:
+    dependencies:
+      minecraft-data: 2.69.1
+    dev: false
+    id: registry.npmjs.org/prismarine-recipe/1.1.0
+    peerDependencies:
+      minecraft-data: ^2.0.0
+    resolution:
+      integrity: sha512-eFmriEWoe6S6OSVbOJnsXpaBuzeIzjaGymDUTCtrOu80734NWKI7outdLI6R2ztJ+f2PFIkFmpkazAdScStGNA==
+  /prismarine-windows/1.6.0/minecraft-data@2.69.1:
+    dependencies:
+      prismarine-item: /prismarine-item/1.5.0/minecraft-data@2.69.1
+    dev: false
+    id: registry.npmjs.org/prismarine-windows/1.6.0
+    resolution:
+      integrity: sha512-026LG1yR76Xb62kM+W83IWT7Wy2yKplllbXNFBF2m0Lr4k4YpYKnpLb8tRft8MLOLRbYAt/KnxE/YKvRZul7kw==
+  /prismarine-world/3.1.0:
+    dependencies:
+      event-promise: 0.0.1
+      vec3: 0.1.7
+    dev: false
+    engines:
+      nodejs: '>=8.0.0'
+    resolution:
+      integrity: sha512-bI3fdAqiSidY31X0E+OBzpW0cgKerBT4FTJFXhyEddhP369+mUoZLL0G7ReG8EIjH+57anIgr3fzBH7k0qlMVw==
   /process-nextick-args/2.0.1:
     dev: false
     resolution:
       integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==
+  /promise/5.0.0:
+    dependencies:
+      asap: 1.0.0
+    dev: false
+    resolution:
+      integrity: sha1-rEC3hmvteq95arW3m4AyXgR+wO8=
+  /protodef-validator/1.2.3:
+    dependencies:
+      ajv: 6.12.6
+    dev: false
+    hasBin: true
+    resolution:
+      integrity: sha512-dMcSMYRh8s0z0iQN0PLVlXwJOgN8cgBuM1uWzhMjkLdpKCOASwp+h7wHnTigBTRVhGLywykcb3EKiGSsXX4vvA==
+  /protodef/1.8.2:
+    dependencies:
+      lodash.get: 4.4.2
+      lodash.reduce: 4.6.0
+      protodef-validator: 1.2.3
+      readable-stream: 3.6.0
+    dev: false
+    engines:
+      node: '>=6'
+    resolution:
+      integrity: sha512-xyTUS2InZM5Pf04cKPv9uwrk8GdKSfBai4ZEKjYPL4S2LylS/sxd2AaDj38rqRrXlthD5bTMax1OFZroKYuK8A==
   /proxy-addr/2.0.5:
     dependencies:
       forwarded: 0.1.2
@@ -802,6 +1077,19 @@ packages:
       node: '>=0.6'
     resolution:
       integrity: sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
+  /railroad-diagrams/1.0.0:
+    dev: false
+    resolution:
+      integrity: sha1-635iZ1SN3t+4mcG5Dlc3RVnN234=
+  /randexp/0.4.6:
+    dependencies:
+      discontinuous-range: 1.0.0
+      ret: 0.1.15
+    dev: false
+    engines:
+      node: '>=0.12'
+    resolution:
+      integrity: sha512-80WNmd9DA0tmZrw9qQa62GPPWfuXJknrmVmLcxvq4uZBdYqb1wYoKTmnlGUchvVWe0XiLupYkBoXVOxz3C8DYQ==
   /range-parser/1.2.1:
     dev: false
     engines:
@@ -841,6 +1129,16 @@ packages:
     dev: false
     resolution:
       integrity: sha512-Ebho8K4jIbHAxnuxi7o42OrZgF/ZTNcsZj6nRKyUmkhLFq8CHItp/fy6hQZuZmP/n3yZ9VBUbp4zz/mX8hmYPw==
+  /readable-stream/3.6.0:
+    dependencies:
+      inherits: 2.0.4
+      string_decoder: 1.3.0
+      util-deprecate: 1.0.2
+    dev: false
+    engines:
+      node: '>= 6'
+    resolution:
+      integrity: sha512-BViHy7LKeTz4oNnkcLJ+lVSL6vpiFeX6/d3oSH8zCW7UxP2onchk+vTGB143xuFjHS3deTgkKoXXymXqymiIdA==
   /request/2.88.0:
     dependencies:
       aws-sign2: 0.7.0
@@ -868,6 +1166,12 @@ packages:
       node: '>= 4'
     resolution:
       integrity: sha512-NAqBSrijGLZdM0WZNsInLJpkJokL72XYjUpnB0iwsRgxh7dB6COrHnTBNwN0E+lHDAJzu7kLAkDeY08z2/A0hg==
+  /ret/0.1.15:
+    dev: false
+    engines:
+      node: '>=0.12'
+    resolution:
+      integrity: sha512-TTlYpa+OL+vMMNG24xSlQGEJ3B/RzEfUlLct7b5G/ytav+wPrplCpVMFuwzXbkecJrb6IYo1iFb0S9v37754mg==
   /rimraf/2.7.1:
     dependencies:
       glob: 7.1.6
@@ -883,6 +1187,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-fZEwUGbVl7kouZs1jCdMLdt95hdIv0ZeHg6L7qPeciMZhZ+/gdesW4wgTARkrFWEpspjEATAzUGPG8N2jJiwbg==
+  /safe-buffer/5.2.1:
+    dev: false
+    resolution:
+      integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==
   /safer-buffer/2.1.2:
     dev: false
     resolution:
@@ -939,6 +1247,17 @@ packages:
     dev: false
     resolution:
       integrity: sha1-tf3AjxKH6hF4Yo5BXiUTK3NkbG0=
+  /smart-buffer/4.1.0:
+    dev: false
+    engines:
+      node: '>= 6.0.0'
+      npm: '>= 3.0.0'
+    resolution:
+      integrity: sha512-iVICrxOzCynf/SNaBQCw34eM9jROU/s5rzIhpOvzhzuYHfJR/DhZfDkXiZSgKXfgv26HT3Yni3AV/DGw0cGnnw==
+  /sprintf-js/1.1.2:
+    dev: false
+    resolution:
+      integrity: sha512-VE0SOVEHCk7Qc8ulkWw3ntAzXuqf7S2lvwQaDLRnUeIEaKNQJzV6BwmLKhOqT61aGhfUMrXeaBk+oDGCzvhcug==
   /sqlite3/4.1.1:
     dependencies:
       nan: 2.14.0
@@ -996,6 +1315,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-n/ShnvDi6FHbbVfviro+WojiFzv+s8MPMHBczVePfUpDJLwoLT0ht1l4YwBCbi8pJAveEEdnkHyPyTP/mzRfwg==
+  /string_decoder/1.3.0:
+    dependencies:
+      safe-buffer: 5.2.1
+    dev: false
+    resolution:
+      integrity: sha512-hkRX8U1WjJFd8LsDJ2yQ/wWWxaopEsABU1XfkM8A+j0+85JAGppt16cr1Whg6KIbb4okU6Mql6BOj+uup/wKeA==
   /strip-ansi/3.0.1:
     dependencies:
       ansi-regex: 2.1.1
@@ -1066,6 +1391,14 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha512-TkRKr9sUTxEH8MdfuCSP7VizJyzRNMjj2J2do2Jr3Kym598JVdEksuzPQCnlFPW4ky9Q+iA+ma9BGm06XQBy8g==
+  /typed-emitter/1.3.1:
+    dev: false
+    resolution:
+      integrity: sha512-2h7utWyXgd2R2u2IuL8B4yu1gqMxbgUj2VS/MGVbFhEVQNJKXoQQoS5CBMh+eW31zFeSmDfEQ3qQf4xy5SlPVQ==
+  /uint4/0.1.2:
+    dev: false
+    resolution:
+      integrity: sha1-UMWuBLhdKBKPLfPMDsxNQavC9oE=
   /unpipe/1.0.0:
     dev: false
     engines:
@@ -1078,6 +1411,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-KY9Frmirql91X2Qgjry0Wd4Y+YTdrdZheS8TFwvkbLWf/G5KNJDCh6pKL5OZctEW4+0Baa5idK2ZQuELRwPznQ==
+  /uri-js/4.4.0:
+    dependencies:
+      punycode: 2.1.1
+    dev: false
+    resolution:
+      integrity: sha512-B0yRTzYdUCCn9n+F4+Gh4yIDtMQcaJsmYBDsTSG8g/OejKBodLQ2IHfN3bM7jUsRXndopT7OIXWdYqc1fjmV6g==
   /util-deprecate/1.0.2:
     dev: false
     resolution:
@@ -1088,6 +1427,12 @@ packages:
       node: '>= 0.4.0'
     resolution:
       integrity: sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=
+  /uuid-1345/1.0.2:
+    dependencies:
+      macaddress: 0.5.1
+    dev: false
+    resolution:
+      integrity: sha512-bA5zYZui+3nwAc0s3VdGQGBfbVsJLVX7Np7ch2aqcEWFi5lsAEcmO3+lx3djM1npgpZI8KY2FITZ2uYTnYUYyw==
   /uuid/3.4.0:
     dev: false
     hasBin: true
@@ -1099,6 +1444,10 @@ packages:
       node: '>= 0.8'
     resolution:
       integrity: sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
+  /vec3/0.1.7:
+    dev: false
+    resolution:
+      integrity: sha512-EZSeXBL+L3go2wWwtQQse4fEcNGIQjT14qvi4LYVj1ifZt/J5XZ1QZqkDuOVVH07YwTEIFbsAv3pzwUpF7x9Wg==
   /verror/1.10.0:
     dependencies:
       assert-plus: 1.0.0
@@ -1123,9 +1472,17 @@ packages:
     dev: false
     resolution:
       integrity: sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==
+  /yggdrasil/1.3.0:
+    dependencies:
+      phin: 3.5.0
+      uuid: 3.4.0
+    dev: false
+    resolution:
+      integrity: sha512-Soeun64VJfFlqUY99GwoHwePZEhJTAvcYPbcTaH/1pqCVqEfENuUhc8rNJlngNKrVkvZOPRIJ+T8FCKtcu6BXA==
 registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
   express: ^4.17.1
+  mineflayer: ^2.30.0
   sqlite3: ^4.1.1
