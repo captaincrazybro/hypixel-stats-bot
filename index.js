@@ -54,6 +54,8 @@ bot.on('message', function (messageJson) {
 function getStats(sender, args){
   let gamemode = capitalize(args[0]);
   
+  if(gamemode == "Skywars") gamemode = "SkyWars";
+  
   let player;
   
   if(args.length == 1) player = sender;
