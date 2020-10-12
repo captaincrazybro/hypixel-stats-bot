@@ -66,8 +66,8 @@ function getStats(sender, args){
     if(obj.player == null || obj.player.stats == null) return sendMessage(sender, "The bot encountered a temporary problem, please try again");
     sendMessage(sender, `${player}'s ${gamemode} stats`)
     let stats = obj.player.stats[gamemode];
-    console.log(obj.player.stats)
     console.log(stats);
+    console.log(obj.player.achievements)
     if(stats == undefined) return sendMessage(sender, "Invalid gamemode");
     switch(gamemode){
       case("Duels"):{
@@ -85,8 +85,8 @@ function getStats(sender, args){
         sendMessage(sender, `- FKDR: ${Number.parseFloat(stats.final_kills_bedwars/stats.final_deaths_bedwars).toFixed(2)}, WLR: ${Number.parseFloat(stats.wins_bedwars/stats.losses_bedwars).toFixed(2)}`)
         break;
       }
-      case("Skywars"):{
-        sendMessage(sender, `- Level: ${obj.player.achievements.skywars_level}, XP: ${stats.Experience}`)
+      case("SkyWars"):{
+        sendMessage(sender, `- Level: ${stats.level_skywars}, XP: ${obj.player.achievements.skywars_experience}`)
         break;
       }
       default:{
@@ -108,4 +108,17 @@ function capitalize(string){
   string = string.toLowerCase();
   string = string.charAt(0).toUpperCase() + string.slice(1)
   return string;
+}
+
+function getSwLevel(xp) {
+    var xps = [0, 20, 70, 150, 250, 500, 1000, 2000, 3500, 6000, 10000, 15000];
+    if(xp >= 15000) {
+        return (xp - 15000) / 10000 + 12;
+    } else {
+        for(let i = 0; i < xps.length; i++) {
+            if(xp < xps[i]) {
+                return 1 + i + (xp - xps[i-1]) / (xps[i] - xps[i-1]);
+            }
+        }
+    }
 }
