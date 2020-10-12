@@ -3,7 +3,7 @@ const mineflayer = require('mineflayer')
 console.log("hi");
 
 const bot = mineflayer.createBot({
-  host: 'mutinies.net', // optional
+  host: 'mc.hypixel.net', // optional
   port: 25565,       // optional
   username: process.env.EMAIL, // email and password are required only for
   password: process.env.PASSWORD,          // online-mode=true servers
@@ -13,17 +13,22 @@ const bot = mineflayer.createBot({
 console.log("connected");
 
 bot.on('message', function (messageJson) {
-  bot.chat("/msg cqptain test")
-  let message = messageJson.json.text;
-  if(messageJson.json.extra != undefined){
-    messageJson.json.extra.forEach(val => {
-      message += val.text;
-    })
-    console.log(message);
-  }
-  
   if(messageJson.json.text == "From "){
-    //console.log(message);
-    bot.chat("/t cqptain hi");
+    bot.chat("/msg cqptain hi")
+    let message = "";
+    if(messageJson.json.extra != undefined){
+      messageJson.json.extra.forEach(val => {
+        message += val.text;
+      })
+    }
+    let sender;
+    if(message.split(":")[0].split(" ").length >= 2){
+      sender = message.split(":")[0].split(" ")[1];
+    } else {
+      sender = message.split(":")[0]
+    }
+    
+    let cmd = message.split(":")[1];
+    
   }
 })
