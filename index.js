@@ -19,6 +19,6 @@ bot.on('message', function (messageJson) {
       message += val.text;
     })
     console.log(message);
-      
+    bot.chat("/msg cqptain testing");  
   }
 })
