@@ -86,7 +86,7 @@ function getStats(sender, args){
         break;
       }
       case("SkyWars"):{
-        sendMessage(sender, `- Level: ${stats.level_skywars}, XP: ${obj.player.achievements.skywars_experience}`)
+        sendMessage(sender, `- Level: ${obj.player.achievements.skywars_you_re_a_star}, XP: ${obj.player.achievements.skywars_experience}`)
         break;
       }
       default:{
