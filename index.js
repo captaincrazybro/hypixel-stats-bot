@@ -13,12 +13,14 @@ const bot = mineflayer.createBot({
 console.log("connected");
 
 bot.on('message', function (messageJson) {
+  let message = messageJson.json.text;
+  messageJson.json.extra.forEach(val => {
+    message += val.text;
+  })
+  console.log(message);
+  
   if(messageJson.json.text == "From "){
-    let message = "";
-    messageJson.json.extra.forEach(val => {
-      message += val.text;
-    })
-    console.log(message);
-    bot.send("/msg cqptain hi")
+    //console.log(message);
+    bot.chat("/t cqptain hi");
   }
 })
