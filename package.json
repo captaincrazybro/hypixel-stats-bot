@@ -5,12 +5,13 @@
   "name": "hello-sqlite",
   "version": "0.0.1",
   "description": "A simple Node app with SQLite as a database management system, instantly up and running.",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "dependencies": {
     "express": "^4.17.1",
+    "mineflayer": "^2.30.0",
     "sqlite3": "^4.1.1"
   },
   "engines": {
