@@ -48,7 +48,7 @@ bot.on('message', function (messageJson) {
 })
 
 function getStats(sender, args){
-  let gamemode = args[0];
+  let gamemode = capitalize(args[0]);
   
   let player;
   
@@ -56,7 +56,17 @@ function getStats(sender, args){
   else player = args[1];
   
   hypixel.getPlayerByName(process.env.APIKEY, player).then(player => {
-    console.log(player.stats[gamemode]);
+    if(!player.success) return sendMessage(sender, "Invalid player");
+    sendMessage(player, `${player}'s ${gamemode} stats`)
+    switch(gamemode){
+      case("Duels"):{
+        sendMessage(player, ``)
+        break;
+      }
+      default:{
+        break;
+      }
+    }
   })
   
   
@@ -65,4 +75,10 @@ function getStats(sender, args){
 function sendMessage(username, message){
   console.log(`To ${username}: ${message}`)
   //bot._client.write("chat", {message:`/msg ${username} ${message}`});
+}
+
+function capitalize(string){
+  string = string.toLowerCase();
+  string = string.charAt(0).toUpperCase() + string.slice(1)
+  return string;
 }
