@@ -64,13 +64,15 @@ function getStats(sender, args){
     if(obj.player == null || obj.player.stats == null) return sendMessage(sender, "The bot encountered a temporary problem, please try again");
     sendMessage(sender, `${player}'s ${gamemode} stats`)
     let stats = obj.player.stats[gamemode];
+    console.log(obj.player.stats)
     console.log(stats);
+    if(stats == undefined) return sendMessage(sender, "Invalid gamemode");
     switch(gamemode){
       case("Duels"):{
-        sendMessage(sender, `- WS: ${stats.current_winstreak} Best WS: ${stats.best_overall_winstreak}`);
-        sendMessage(sender, `- Wins: ${stats.wins} Losses: ${stats.losses}`);
-        sendMessage(sender, `- Kills: ${stats.kills} Deaths: ${stats.deaths}`);
-        sendMessage(sender, `- WLR: ${Number.parseFloat(stats.wins/stats.losses).toFixed(2)} KDR: ${Number.parseFloat(stats.kills/stats.deaths).toFixed(2)}`);
+        sendMessage(sender, `- WS: ${stats.current_winstreak}, Best WS: ${stats.best_overall_winstreak}`);
+        sendMessage(sender, `- Wins: ${stats.wins}, Losses: ${stats.losses}`);
+        sendMessage(sender, `- Kills: ${stats.kills}, Deaths: ${stats.deaths}`);
+        sendMessage(sender, `- WLR: ${Number.parseFloat(stats.wins/stats.losses).toFixed(2)}, KDR: ${Number.parseFloat(stats.kills/stats.deaths).toFixed(2)}`);
         break;
       }
       case("Bedwars"):{
@@ -79,6 +81,10 @@ function getStats(sender, args){
         sendMessage(sender, `- Kills: ${stats.kills_bedwars}, Deaths: ${stats.deaths_bedwars}`)
         sendMessage(sender, `- Wins: ${stats.wins_bedwars}, Losses: ${stats.losses_bedwars}`)
         sendMessage(sender, `- FKDR: ${Number.parseFloat(stats.final_kills_bedwars/stats.final_deaths_bedwars).toFixed(2)}, WLR: ${Number.parseFloat(stats.wins_bedwars/stats.losses_bedwars).toFixed(2)}`)
+        break;
+      }
+      case("Skywars"):{
+        sendMessage(sender, `- Level: ${obj.player.achievements.skywars_level}, XP: ${stats.Experience}`)
         break;
       }
       default:{
