@@ -21,7 +21,6 @@ bot.on('message', function (messageJson) {
     }
   console.log(message);
   if(messageJson.json.text){
-    bot.send("/msg cqptain hi")
     let message = "";
     if(messageJson.json.extra != undefined){
       messageJson.json.extra.forEach(val => {
