@@ -40,7 +40,8 @@ bot.on('message', function (messageJson) {
     
     if(args[0].toLowerCase() == "help"){
       sendMessage(sender, "List of commands");
-      
+    } else if(args[0].toLowerCase() == "who" || args[0].toLowerCase() == "list"){
+      sendMessage(sender, "Coming soon... :)")
     } else if(args[0].toLowerCase() == "about" || args[0].toLowerCase() == "author"){
       sendMessage(sender, "Made by cqptain");
     } else {
@@ -72,8 +73,13 @@ function getStats(sender, args){
         sendMessage(player, `- WLR: ${Number.parseFloat(stats.wins/stats.losses).toFixed(2)} KDR: ${Number.parseFloat(stats.kills/stats.deaths).toFixed(2)}`);
         break;
       }
+      case("Bedwars"):{
+        sendMessage(player, `- Level: ${obj.player.achievements.bedwars_level} XP: ${stats.Experience}`)
+        sendMessage(player, `- `)
+        break;
+      }
       default:{
-        sendMessage(player, `Unfortunately, this stat type is not supported right now`)
+        sendMessage(player, `Unfortunately, stats for this gamemode are not yet supported`)
         break;
       }
     }
