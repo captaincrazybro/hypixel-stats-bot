@@ -12,7 +12,13 @@ const bot = mineflayer.createBot({
 
 console.log("connected");
 
-bot.on('whisper', function (username, message) {
-  if (username === bot.username) return;
-  console.log(message);
+bot.on('message', function (messageJson) {
+  if(messageJson.json.text == "From "){
+    let message = "";
+    messageJson.json.extra.forEach(val => {
+      message += val.text;
+    })
+    console.log(message);
+      
+  }
 })
