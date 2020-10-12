@@ -38,8 +38,11 @@ bot.on('message', function (messageJson) {
     
     if(args.length == 0) return sendMessage(sender, "Specify a command (message the bot 'help' for a list of commands)")
     
-    if(args[0] == "help"){
+    if(args[0].toLowerCase() == "help"){
       sendMessage(sender, "List of commands");
+      
+    } else if(args[0].toLowerCase() == "about" || args[0].toLowerCase() == "author"){
+      sendMessage(sender, "Made by cqptain");
     } else {
       getStats(sender, args);
     }
@@ -55,15 +58,22 @@ function getStats(sender, args){
   if(args.length == 1) player = sender;
   else player = args[1];
   
-  hypixel.getPlayerByName(process.env.APIKEY, player).then(player => {
-    if(!player.success) return sendMessage(sender, "Invalid player");
+  hypixel.getPlayerByName(process.env.APIKEY, player).then(obj => {
+    if(!obj.success) return sendMessage(sender, "Invalid player");
+    if(obj.player == null || obj.player.stats == null) return sendMessage(sender, "The bot encountered a temporary problem, please try again");
     sendMessage(player, `${player}'s ${gamemode} stats`)
+    let stats = obj.player.stats[gamemode];
+    console.log(stats);
     switch(gamemode){
       case("Duels"):{
-        sendMessage(player, ``)
+        sendMessage(player, `- WS: ${stats.current_winstreak} Best WS: ${stats.best_overall_winstreak}`);
+        sendMessage(player, `- Wins: ${stats.wins} Losses: ${stats.losses}`);
+        sendMessage(player, `- Kills: ${stats.kills} Deaths: ${stats.deaths}`);
+        sendMessage(player, `- WLR: ${Number.parseFloat(stats.wins/stats.losses).toFixed(2)} KDR: ${Number.parseFloat(stats.kills/stats.deaths).toFixed(2)}`);
         break;
       }
       default:{
+        sendMessage(player, `Unfortunately, this stat type is not supported right now`)
         break;
       }
     }
