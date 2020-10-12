@@ -1,6 +1,8 @@
 const mineflayer = require('mineflayer')
 const hypixel = require('hypixel-api-nodejs');
 
+let partyQue = [];
+
 const bot = mineflayer.createBot({
   host: 'mc.hypixel.net', // optional
   port: 25565,       // optional
@@ -49,7 +51,11 @@ bot.on('message', function (messageJson) {
     }
     
   } else if(message.includes("has invited you to join their party!")){
-    
+    if(message.includes(":")) return;
+    partyQue.push(message.split(" ")[0]);
+    if(partyQue.length == 1){
+      
+    }
   }
 })
 
@@ -114,3 +120,5 @@ function capitalize(string){
   string = string.charAt(0).toUpperCase() + string.slice(1)
   return string;
 }
+
+function 
