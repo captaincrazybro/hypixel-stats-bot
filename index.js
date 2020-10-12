@@ -35,9 +35,14 @@ bot.on('message', function (messageJson) {
     let args = cmd.split(" ");
     args.shift();
     
-    
+    if(args[0] == "help"){
+      sendMessage(sender, "List of commands");
+    }
     
   }
 })
 
-bot._client.write("chat", {message:"/msg cqptain test"})
+function sendMessage(username, message){
+  console.log(`To ${username}: ${message}`)
+  //bot._client.write("chat", {message:`/msg ${username} ${message}`});
+}
