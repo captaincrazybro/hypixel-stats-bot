@@ -62,24 +62,27 @@ function getStats(sender, args){
   hypixel.getPlayerByName(process.env.APIKEY, player).then(obj => {
     if(!obj.success) return sendMessage(sender, "Invalid player");
     if(obj.player == null || obj.player.stats == null) return sendMessage(sender, "The bot encountered a temporary problem, please try again");
-    sendMessage(player, `${player}'s ${gamemode} stats`)
+    sendMessage(sender, `${player}'s ${gamemode} stats`)
     let stats = obj.player.stats[gamemode];
     console.log(stats);
     switch(gamemode){
       case("Duels"):{
-        sendMessage(player, `- WS: ${stats.current_winstreak} Best WS: ${stats.best_overall_winstreak}`);
-        sendMessage(player, `- Wins: ${stats.wins} Losses: ${stats.losses}`);
-        sendMessage(player, `- Kills: ${stats.kills} Deaths: ${stats.deaths}`);
-        sendMessage(player, `- WLR: ${Number.parseFloat(stats.wins/stats.losses).toFixed(2)} KDR: ${Number.parseFloat(stats.kills/stats.deaths).toFixed(2)}`);
+        sendMessage(sender, `- WS: ${stats.current_winstreak} Best WS: ${stats.best_overall_winstreak}`);
+        sendMessage(sender, `- Wins: ${stats.wins} Losses: ${stats.losses}`);
+        sendMessage(sender, `- Kills: ${stats.kills} Deaths: ${stats.deaths}`);
+        sendMessage(sender, `- WLR: ${Number.parseFloat(stats.wins/stats.losses).toFixed(2)} KDR: ${Number.parseFloat(stats.kills/stats.deaths).toFixed(2)}`);
         break;
       }
       case("Bedwars"):{
-        sendMessage(player, `- Level: ${obj.player.achievements.bedwars_level} XP: ${stats.Experience}`)
-        sendMessage(player, `- `)
+        sendMessage(sender, `- Level: ${obj.player.achievements.bedwars_level}, XP: ${stats.Experience}`)
+        sendMessage(sender, `- Finals Kills: ${stats.final_kills_bedwars}, Final Deaths: ${stats.final_deaths_bedwars}`)
+        sendMessage(sender, `- Kills: ${stats.kills_bedwars}, Deaths: ${stats.deaths_bedwars}`)
+        sendMessage(sender, `- Wins: ${stats.wins_bedwars}, Losses: ${stats.losses_bedwars}`)
+        sendMessage(sender, `- FKDR: ${Number.parseFloat(stats.final_kills_bedwars/stats.final_deaths_bedwars).toFixed(2)}, WLR: ${Number.parseFloat(stats.wins_bedwars/stats.losses_bedwars).toFixed(2)}`)
         break;
       }
       default:{
-        sendMessage(player, `Unfortunately, stats for this gamemode are not yet supported`)
+        sendMessage(sender, `Unfortunately, stats for this gamemode are not yet supported`)
         break;
       }
     }
