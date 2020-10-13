@@ -6,6 +6,7 @@ let partyQue = [];
 let gettingMembers = false;
 let partyMembers = [];
 let alreadyChecked = false;
+let partyGamemode = null;
 
 const bot = mineflayer.createBot({
   host: 'mc.hypixel.net', // optional
@@ -67,10 +68,12 @@ bot.on('message', function (messageJson) {
     let players = message.split(":")[1].split(" ");
     players.shift();
     players = players.join(" ");
-    players = players.split(", ");
+    players = players.split(" ●");
+    console.log(players);
     players.forEach(player => {
-      if(player.includes("[")) player = player.split(" ")[1];
-      else player = player.split(" ")[0];
+      console.log(player);
+      if(player.includes("[")) player = player.split(" ")[2];
+      else player = player.split(" ")[1];
       if(player != "DevTM") partyMembers.push(player);
     })
     if(!alreadyChecked){
@@ -96,8 +99,12 @@ bot.on('message', function (messageJson) {
                 } else {
                   //console.log(status);
                   hypixel.getPlayerByUuid(process.env.APIKEY, response.id).then(obj => {
-                    let gamemode = capitalize(status.session.gameType)
-                    if(gamemode == "Skywars") gamemode = "SkyWars";
+                    let gamemode = partyGamemode;
+                    if(i == 0){
+                      let gamemode = capitalize(status.session.gameType)
+                      partyGamemode = gamemode;
+                      if(gamemode == "Skywars") gamemode = "SkyWars";
+                    }
                     if(obj.player == null || obj.player.stats == null){
                       bot._client.write("chat", {message:"/pchat The bot encountered a temporary problem, please try again"})
                       nextParty();
@@ -223,6 +230,7 @@ function nextParty(){
   partyMembers = []
   gettingMembers = false;
   partyQue.shift()
+  partyGamemode = null;
   setTimeout(() => {
     bot._client.write("chat", {message:"/party leave"})
   }, 2000);
