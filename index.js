@@ -8,7 +8,7 @@ let partyMembers = [];
 let alreadyChecked = false;
 
 const bot = mineflayer.createBot({
-  host: 'mc.hypixel.net', // optional
+  //host: 'mc.hypixel.net', // optional
   port: 25565,       // optional
   username: process.env.EMAIL, // email and password are required only for
   password: process.env.PASSWORD,          // online-mode=true servers
