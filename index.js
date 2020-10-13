@@ -70,12 +70,12 @@ bot.on('message', function (messageJson) {
     players = players.split(", ");
     players.forEach(player => {
       if(player.includes("[")) player = player.split(" ")[1];
+      else player = player.split(" ")[0];
       if(player != "statsbot") partyMembers.push(player);
     })
     if(!alreadyChecked){
       alreadyChecked = true;
       setTimeout(() => {
-        
         /*getJSON("https://api.mojang.com/users/profiles/minecraft/" + partyMembers[0], (error, response) => {
           if(error) console.log(error);
           else {
@@ -84,21 +84,18 @@ bot.on('message', function (messageJson) {
               else {
               if(status.session.gametype != undefined && (status.session.gametype == "BEDWARS")){*/
         partyMembers.forEach(val => {
-          getJSON("api.mojang.com/users/profiles/minecraft/" + val, (error, response) => {
-            console.log("hi2");
-            console.log(response);
+          getJSON('https://api.mojang.com/users/profiles/minecraft/' + val, (error, response) => {
             if(error) {
               console.log(error);
               nextParty();
             } else {
-              getJSON(`api.hypixel.net/status?key=${process.env.APIKEY}&uuid=${response.id}`, (error, status) => {
+              getJSON(`https://api.hypixel.net/status?key=${process.env.APIKEY}&uuid=${response.id}`, (error, status) => {
                 if(error) {
                   console.log(error);
                   nextParty();
                 } else {
-                    console.log(status);
                   hypixel.getPlayerByUuid(process.env.APIKEY, response.id).then(obj => {
-                    let gamemode = capitalize(status.session.gametype)
+                    let gamemode = capitalize(status.session.gameType)
                     if(gamemode == "Skywars") gamemode = "SkyWars";
                     if(obj.player == null || obj.player.stats == null){
                       console.log({message:"/pchat The bot encountered a temporary problem, please try again"})
@@ -108,7 +105,7 @@ bot.on('message', function (messageJson) {
                     let stats = obj.player.stats[gamemode];
                     switch(gamemode){
                         case("Bedwars"):{
-                          console.log({message:`/pchat ${val} - Level: ${obj.player.achievements.level_bedwars}, WS: ${stats.winstreak}, Finals: ${stats.final_kills_bedwars}, FKDR: ${Number.parseFloat(stats.final_kills_bedwars/stats.final_deaths_bedwars).toFixed(2)}, Wins: ${stats.wins_bedwars}`})
+                          console.log({message:`/pchat ${val} - Level: ${obj.player.achievements.bedwars_level}, WS: ${stats.winstreak}, Finals: ${stats.final_kills_bedwars}, FKDR: ${Number.parseFloat(stats.final_kills_bedwars/stats.final_deaths_bedwars).toFixed(2)}, Wins: ${stats.wins_bedwars}`})
                           break;
                         }
                       default:{
@@ -198,7 +195,7 @@ function capitalize(string){
 
 setTimeout(() => {
   bot._client.write("chat", {message:"/p leave"});
-}, 5000);
+}, 2000);
 
 function startParty(){
   console.log({message:"/party accept " + partyQue[0]});
@@ -206,7 +203,7 @@ function startParty(){
   gettingMembers = true;
   setTimeout(() => {
     bot._client.write("chat", {message:"/party list"})
-  }, 2500);
+  }, 2000);
 }
 
 function nextParty(){
