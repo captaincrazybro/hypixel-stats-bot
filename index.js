@@ -17,11 +17,6 @@ const bot = mineflayer.createBot({
 
 console.log("Connected!");
 
-getJSON("https://api.hypixel.net/status?key=" + process.env.APIKEY + "&name=cqptain", (error, response) => {
-  console.log(error);
-  console.log(response);
-});
-
 bot.on('message', function (messageJson) {
     let message;
     if(messageJson.json.text) message = messageJson.json.text;
@@ -72,7 +67,16 @@ bot.on('message', function (messageJson) {
     if(!alreadyChecked){
       alreadyChecked = true;
       setTimeout(() => {
-        
+        bot._client.write("chat", {message:"/ch p"})
+        bot._client.write("chat", {message:""})
+        partyMembers.forEach(val => {
+          getJSON("https://api.mojang.com/users/profiles/minecraft/" + val, (error, response) => {
+            if(error) console.log(err);
+            else {
+              
+            }
+          })
+        });
       }, 2500)
     }
   }
