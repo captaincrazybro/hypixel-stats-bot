@@ -56,7 +56,9 @@ bot.on('message', function (messageJson) {
     
   } else if(message.includes("has invited you to join their party!")){
     if(message.includes(":")) return;
-    partyQue.push(message.split(" ")[0]);
+    let player = message.split("\n")[1].split(" ")[0];
+    if(player.includes("[")) player = message.split("\n")[1].split(" ")[1];
+    partyQue.push(player);
     if(partyQue.length == 1){
       startParty();
     }
@@ -179,6 +181,8 @@ function getStats(sender, args){
   
 }
 
+bot.chat("/p accept cqptain")
+
 function sendMessage(username, message){
   console.log(`To ${username}: ${message}`)
   //bot._client.write("chat", {message:`/msg ${username} ${message}`});
@@ -191,10 +195,10 @@ function capitalize(string){
 }
 
 function startParty(){
-  console.log({message:"/party accepty " + partyQue[0]});
-  bot._client.write("chat", {message:"/party accepty " + partyQue[0]})
+  console.log({message:"/party accept " + partyQue[0]});
+  bot._client.write("chat", {message:"/party accept " + partyQue[0]})
   gettingMembers = true;
-  bot._client.write("chat", {message:"/party list"})
+  //bot._client.write("chat", {message:"/party list"})
 }
 
 function nextParty(){
