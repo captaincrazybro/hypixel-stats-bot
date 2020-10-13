@@ -200,7 +200,9 @@ function startParty(){
   console.log({message:"/party accept " + partyQue[0]});
   bot._client.write("chat", {message:"/party accept " + partyQue[0]})
   gettingMembers = true;
-  //bot._client.write("chat", {message:"/party list"})
+  setTimeout(() => {
+    bot._client.write("chat", {message:"/party list"})
+  }, 2500);
 }
 
 function nextParty(){
