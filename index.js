@@ -8,7 +8,7 @@ let partyMembers = [];
 let alreadyChecked = false;
 
 const bot = mineflayer.createBot({
-  //host: 'mc.hypixel.net', // optional
+  host: 'mc.hypixel.net', // optional
   port: 25565,       // optional
   username: process.env.EMAIL, // email and password are required only for
   password: process.env.PASSWORD,          // online-mode=true servers
@@ -163,8 +163,8 @@ function getStats(sender, args){
   else player = args[1];
   
   hypixel.getPlayerByName(process.env.APIKEY, player).then(obj => {
-    if(!obj.success) return sendMessage(sender, "Invalid player");
-    if(obj.player == null || obj.player.stats == null) return sendMessage(sender, "The bot encountered a temporary problem, please try again");
+    if(obj.player == null || !obj.success) return sendMessage(sender, "Invalid player");
+    if(obj.player.stats == null) return sendMessage(sender, "The bot encountered a temporary problem, please try again");
     let stats = obj.player.stats[gamemode];
     //console.log(stats);
     if(stats == undefined) return sendMessage(sender, "Invalid gamemode");
