@@ -61,8 +61,12 @@ bot.on('message', function (messageJson) {
       
     }
   } else if((message.startsWith("Party Leader") || message.startsWith("Party Moderator") || message.startsWith("Party Member")) && gettingMembers){
-    let players = message.split(":")[1].split(", ");
+    let players = message.split(":")[1].split(" ");
+    players.shift();
+    players.join(" ");
+    players = players.split(", ");
     players.forEach(player => {
+      if(player.includes("[")) player = player.split(" ")[1];
       if(player != bot.username) partyMembers.push(player);
     })
     if(!alreadyChecked){
@@ -91,6 +95,11 @@ bot.on('message', function (messageJson) {
                   hypixel.getPlayerByUuid(process.env.APIKEY, response.id).then(obj => {
                     let gamemode = capitalize(status.session.gametype)
                     if(gamemode == "Skywars") gamemode = "SkyWars";
+                    if(obj.player == null || obj.player.stats == null){
+                      
+                      nextParty();
+                      return;
+                    }
                     let stats = obj.player.stats[gamemode];
                     switch(gamemode){
                         case("Bedwars"):{
