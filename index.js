@@ -70,13 +70,13 @@ bot.on('message', function (messageJson) {
         bot._client.write("chat", {message:"/ch p"})
         bot._client.write("chat", {message:""})
         
-        getJSON("https://api.mojang.com/users/profiles/minecraft/" + partyMembers[0], (error, response) => {
+        /*getJSON("https://api.mojang.com/users/profiles/minecraft/" + partyMembers[0], (error, response) => {
           if(error) console.log(error);
           else {
             getJSON(`https://api.hypixel.net/status?key=${process.env.APIKEY}&uuid=${response.id}`, (error, status) => {
               if(error) console.log(error);
               else {
-              if(status.session.gametype != undefined && (status.session.gametype == "BEDWARS")){
+              if(status.session.gametype != undefined && (status.session.gametype == "BEDWARS")){*/
         partyMembers.forEach(val => {
           getJSON("https://api.mojang.com/users/profiles/minecraft/" + val, (error, response) => {
             if(error) console.log(error);
@@ -93,9 +93,17 @@ bot.on('message', function (messageJson) {
                           break;
                         }
                       default:{
-                        
+                        bot._client.write("chat", {message:"Unfortunately, this gamemode is not yet supported"})
                         break;
                       }
+                    }
+                    if(partyMembers.indexOf(val) == (partyMembers.length - 1)){
+                      alreadyChecked = false;
+                      partyMembers = []
+                      gettingMembers = false;
+                      partyQue.shift()
+                      bot._client.write("chat", {message:"/party leave"})
+                      if(partyQue.length != 0) startParty();
                     }
                   })
                 }
@@ -103,13 +111,18 @@ bot.on('message', function (messageJson) {
             }
           })
         });
-              } else {
-                bot_client.write("chat", {message:"Unfortunately, this gamemode is not yet support"})
-              }
-            }
-            })
-          }
-        })
+              /*} else {
+                bot._client.write("chat", {message:"Unfortunately, this gamemode is not yet support"})
+                alreadyChecked = false;
+                partyMembers = []
+                gettingMembers = false;
+                partyQue.shift()
+                bot._client.write("chat", {message:"/party leave"})
+              }*/
+            //}
+            //})
+          //}
+        //})
       }, 2500)
     }
   }
