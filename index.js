@@ -1,5 +1,6 @@
 const mineflayer = require('mineflayer')
 const hypixel = require('hypixel-api-nodejs');
+const getJSON = require('get-json')
 
 let partyQue = [];
 let gettingMembers = false;
@@ -15,6 +16,11 @@ const bot = mineflayer.createBot({
 })
 
 console.log("Connected!");
+
+getJSON("https://api.hypixel.net/status?key=" + process.env.APIKEY + "&name=cqptain", (error, response) => {
+  console.log(error);
+  console.log(response);
+});
 
 bot.on('message', function (messageJson) {
     let message;
@@ -59,7 +65,7 @@ bot.on('message', function (messageJson) {
     if(partyQue.length == 1){
       
     }
-  } else if((message.startsWith("Party Leader") || message.starsWith("Party Moderator") || message.startsWith("Party Member")) && gettingMembers){
+  } else if((message.startsWith("Party Leader") || message.startsWith("Party Moderator") || message.startsWith("Party Member")) && gettingMembers){
     let player = message.split(":")[1].split(" ")[1];
     if(message.split(":")[1].includes("[")) player = message.split(":")[1].split(" ")[2];
     partyMembers.push(player);
@@ -85,23 +91,22 @@ function getStats(sender, args){
   hypixel.getPlayerByName(process.env.APIKEY, player).then(obj => {
     if(!obj.success) return sendMessage(sender, "Invalid player");
     if(obj.player == null || obj.player.stats == null) return sendMessage(sender, "The bot encountered a temporary problem, please try again");
-    sendMessage(sender, `${player}'s ${gamemode} stats`)
     let stats = obj.player.stats[gamemode];
     console.log(stats);
-    console.log(obj.player.achievements)
+    console.log(obj)
     if(stats == undefined) return sendMessage(sender, "Invalid gamemode");
     switch(gamemode){
       case("Duels"):{
-        sendMessage(sender, `- WS: ${stats.current_winstreak}, Best WS: ${stats.best_overall_winstreak}, Wins: ${stats.wins}, Losses: ${stats.losses}, Kills: ${stats.kills}, Deaths: ${stats.deaths}, WLR: ${Number.parseFloat(stats.wins/stats.losses).toFixed(2)}, KDR: ${Number.parseFloat(stats.kills/stats.deaths).toFixed(2)}`);
+        sendMessage(sender, `${player}'s ${gamemode} stats - WS: ${stats.current_winstreak}, Best WS: ${stats.best_overall_winstreak}, Wins: ${stats.wins}, Losses: ${stats.losses}, Kills: ${stats.kills}, Deaths: ${stats.deaths}, WLR: ${Number.parseFloat(stats.wins/stats.losses).toFixed(2)}, KDR: ${Number.parseFloat(stats.kills/stats.deaths).toFixed(2)}`);
         break;
       }
       case("Bedwars"):{
-        sendMessage(sender, `- Level: ${obj.player.achievements.bedwars_level}, XP: ${stats.Experience}, Finals Kills: ${stats.final_kills_bedwars}, Final Deaths: ${stats.final_deaths_bedwars}, Kills: ${stats.kills_bedwars}, Deaths: ${stats.deaths_bedwars}, Wins: ${stats.wins_bedwars}, Losses: ${stats.losses_bedwars}` +
+        sendMessage(sender, `${player}'s ${gamemode} stats - Level: ${obj.player.achievements.bedwars_level}, XP: ${stats.Experience}, Finals Kills: ${stats.final_kills_bedwars}, Final Deaths: ${stats.final_deaths_bedwars}, Kills: ${stats.kills_bedwars}, Deaths: ${stats.deaths_bedwars}, Wins: ${stats.wins_bedwars}, Losses: ${stats.losses_bedwars}` +
                    `, FKDR: ${Number.parseFloat(stats.final_kills_bedwars/stats.final_deaths_bedwars).toFixed(2)}, WLR: ${Number.parseFloat(stats.wins_bedwars/stats.losses_bedwars).toFixed(2)}`)
         break;
       }
       case("SkyWars"):{
-        sendMessage(sender, `- Level: ${obj.player.achievements.skywars_you_re_a_star}, XP: ${stats.skywars_experience}, ` +
+        sendMessage(sender, `${player}'s ${gamemode} stats - Level: ${obj.player.achievements.skywars_you_re_a_star}, XP: ${stats.skywars_experience}, ` +
         `Wins: ${stats.wins}, Losses: ${stats.losses}, ` +
         `Kills: ${stats.kills}, Deaths: ${stats.deaths}, ` +
         `WLR: ${Number.parseFloat(stats.wins/stats.losses).toFixed(2)}, KDR: ${Number.parseFloat(stats.kills/stats.deaths).toFixed(2)}`)

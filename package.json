@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "express": "^4.17.1",
+    "get-json": "^1.0.1",
     "hypixel-api-nodejs": "^0.1.5",
     "minecraft-protocol": "^1.17.0",
     "mineflayer": "^2.30.0",
