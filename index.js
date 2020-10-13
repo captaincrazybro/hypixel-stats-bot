@@ -45,7 +45,7 @@ bot.on('message', function (messageJson) {
     if(args.length == 0) return sendMessage(sender, "Specify a command (message the bot 'help' for a list of commands)")
     
     if(args[0].toLowerCase() == "help"){
-      sendMessage(sender, "List of commands");
+      sendMessage(sender, "List of commands: <gamemode> [player], about");
     } else if(args[0].toLowerCase() == "who" || args[0].toLowerCase() == "list"){
       sendMessage(sender, "Coming soon... :)")
     } else if(args[0].toLowerCase() == "about" || args[0].toLowerCase() == "author"){
