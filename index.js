@@ -63,17 +63,42 @@ bot.on('message', function (messageJson) {
   } else if((message.startsWith("Party Leader") || message.startsWith("Party Moderator") || message.startsWith("Party Member")) && gettingMembers){
     let player = message.split(":")[1].split(" ")[1];
     if(message.split(":")[1].includes("[")) player = message.split(":")[1].split(" ")[2];
-    partyMembers.push(player);
+    if(player != bot.username) partyMembers.push(player);
     if(!alreadyChecked){
       alreadyChecked = true;
       setTimeout(() => {
         bot._client.write("chat", {message:"/ch p"})
         bot._client.write("chat", {message:""})
+        
+        getJSON("https://api.mojang.com/users/profiles/minecraft/" + partyMembers[0], (error, response) => {
+          if(error) console.log(error);
+          else {
+            getJSON(`https://api.hypixel.net/status?key=${process.env.APIKEY}&uuid=${response.id}`, (error, status) => {
+              if(error) console.log(error);
+              else {
         partyMembers.forEach(val => {
           getJSON("https://api.mojang.com/users/profiles/minecraft/" + val, (error, response) => {
-            if(error) console.log(err);
+            if(error) console.log(error);
             else {
-              
+              getJSON(`https://api.hypixel.net/status?key=${process.env.APIKEY}&uuid=${response.id}`, (error, status) => {
+                if(error) console.log(error);
+                else {
+                  hypixel.getPlayerByUuid(process.env.APIKEY, response.id).then(obj => {
+                    let gamemode = capitalize(status.session.gametype)
+                    if(gamemode == "Skywars") gamemode = "SkyWars";
+                    let stats = obj.player.stats[gamemode]
+                    switch(gamemode){
+                        case("Bedwars"):{
+                          break;
+                        }
+                      default:{
+                        
+                        break;
+                      }
+                    }
+                  })
+                }
+              })
             }
           })
         });
