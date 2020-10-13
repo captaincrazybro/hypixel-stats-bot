@@ -63,6 +63,7 @@ bot.on('message', function (messageJson) {
       startParty();
     }
   } else if((message.startsWith("Party Leader") || message.startsWith("Party Moderator") || message.startsWith("Party Member")) && gettingMembers){
+    console.log(message);
     let players = message.split(":")[1].split(" ");
     players.shift();
     players.join(" ");
