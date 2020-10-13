@@ -84,16 +84,18 @@ bot.on('message', function (messageJson) {
               else {
               if(status.session.gametype != undefined && (status.session.gametype == "BEDWARS")){*/
         partyMembers.forEach(val => {
-          getJSON("https://api.mojang.com/users/profiles/minecraft/" + val, (error, response) => {
+          getJSON("api.mojang.com/users/profiles/minecraft/" + val, (error, response) => {
+            console.log(response);
             if(error) {
               console.log(error);
               nextParty();
             } else {
-              getJSON(`https://api.hypixel.net/status?key=${process.env.APIKEY}&uuid=${response.id}`, (error, status) => {
+              getJSON(`api.hypixel.net/status?key=${process.env.APIKEY}&uuid=${response.id}`, (error, status) => {
                 if(error) {
                   console.log(error);
                   nextParty();
                 } else {
+                    console.log(status);
                   hypixel.getPlayerByUuid(process.env.APIKEY, response.id).then(obj => {
                     let gamemode = capitalize(status.session.gametype)
                     if(gamemode == "Skywars") gamemode = "SkyWars";
