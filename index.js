@@ -49,7 +49,7 @@ bot.on('message', function (messageJson) {
     } else if(args[0].toLowerCase() == "who" || args[0].toLowerCase() == "list"){
       sendMessage(sender, "Coming soon... :)")
     } else if(args[0].toLowerCase() == "about" || args[0].toLowerCase() == "author"){
-      sendMessage(sender, "Made by cqptain");
+      sendMessage(sender, "Made by cqptain, Repo - https://github.com/captaincrazybro/hypixel-stats-bot");
     } else {
       getStats(sender, args);
     }
