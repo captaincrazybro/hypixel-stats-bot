@@ -2,6 +2,9 @@ const mineflayer = require('mineflayer')
 const hypixel = require('hypixel-api-nodejs');
 
 let partyQue = [];
+let gettingMembers = false;
+let partyMembers = [];
+let alreadyChecked = false;
 
 const bot = mineflayer.createBot({
   host: 'mc.hypixel.net', // optional
@@ -79,25 +82,19 @@ function getStats(sender, args){
     if(stats == undefined) return sendMessage(sender, "Invalid gamemode");
     switch(gamemode){
       case("Duels"):{
-        sendMessage(sender, `- WS: ${stats.current_winstreak}, Best WS: ${stats.best_overall_winstreak}`);
-        sendMessage(sender, `- Wins: ${stats.wins}, Losses: ${stats.losses}`);
-        sendMessage(sender, `- Kills: ${stats.kills}, Deaths: ${stats.deaths}`);
-        sendMessage(sender, `- WLR: ${Number.parseFloat(stats.wins/stats.losses).toFixed(2)}, KDR: ${Number.parseFloat(stats.kills/stats.deaths).toFixed(2)}`);
+        sendMessage(sender, `- WS: ${stats.current_winstreak}, Best WS: ${stats.best_overall_winstreak}, Wins: ${stats.wins}, Losses: ${stats.losses}, Kills: ${stats.kills}, Deaths: ${stats.deaths}, WLR: ${Number.parseFloat(stats.wins/stats.losses).toFixed(2)}, KDR: ${Number.parseFloat(stats.kills/stats.deaths).toFixed(2)}`);
         break;
       }
       case("Bedwars"):{
-        sendMessage(sender, `- Level: ${obj.player.achievements.bedwars_level}, XP: ${stats.Experience}`)
-        sendMessage(sender, `- Finals Kills: ${stats.final_kills_bedwars}, Final Deaths: ${stats.final_deaths_bedwars}`)
-        sendMessage(sender, `- Kills: ${stats.kills_bedwars}, Deaths: ${stats.deaths_bedwars}`)
-        sendMessage(sender, `- Wins: ${stats.wins_bedwars}, Losses: ${stats.losses_bedwars}`)
-        sendMessage(sender, `- FKDR: ${Number.parseFloat(stats.final_kills_bedwars/stats.final_deaths_bedwars).toFixed(2)}, WLR: ${Number.parseFloat(stats.wins_bedwars/stats.losses_bedwars).toFixed(2)}`)
+        sendMessage(sender, `- Level: ${obj.player.achievements.bedwars_level}, XP: ${stats.Experience}, Finals Kills: ${stats.final_kills_bedwars}, Final Deaths: ${stats.final_deaths_bedwars}, Kills: ${stats.kills_bedwars}, Deaths: ${stats.deaths_bedwars}, Wins: ${stats.wins_bedwars}, Losses: ${stats.losses_bedwars}` +
+                   `, FKDR: ${Number.parseFloat(stats.final_kills_bedwars/stats.final_deaths_bedwars).toFixed(2)}, WLR: ${Number.parseFloat(stats.wins_bedwars/stats.losses_bedwars).toFixed(2)}`)
         break;
       }
       case("SkyWars"):{
-        sendMessage(sender, `- Level: ${obj.player.achievements.skywars_you_re_a_star}, XP: ${stats.skywars_experience}`)
-        sendMessage(sender, `- Wins: ${stats.wins}, Losses: ${stats.losses}`)
-        sendMessage(sender, `- Kills: ${stats.kills}, Deaths: ${stats.deaths}`)
-        sendMessage(sender, `- WLR: ${Number.parseFloat(stats.wins/stats.losses).toFixed(2)}, KDR: ${Number.parseFloat(stats.kills/stats.deaths).toFixed(2)}`)
+        sendMessage(sender, `- Level: ${obj.player.achievements.skywars_you_re_a_star}, XP: ${stats.skywars_experience}, ` +
+        `Wins: ${stats.wins}, Losses: ${stats.losses}, ` +
+        `Kills: ${stats.kills}, Deaths: ${stats.deaths}, ` +
+        `WLR: ${Number.parseFloat(stats.wins/stats.losses).toFixed(2)}, KDR: ${Number.parseFloat(stats.kills/stats.deaths).toFixed(2)}`)
         break;
       }
       default:{
@@ -121,4 +118,8 @@ function capitalize(string){
   return string;
 }
 
-function 
+function startParty(){
+  bot._client.write("chat", {message:"/party join " + partyQue[0]})
+  gettingMembers = true;
+  bot._client.write("chat", {message:"/party list"})
+}
