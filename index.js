@@ -70,7 +70,7 @@ bot.on('message', function (messageJson) {
     players = players.split(", ");
     players.forEach(player => {
       if(player.includes("[")) player = player.split(" ")[1];
-      if(player != bot.username) partyMembers.push(player);
+      if(player != "statsbot") partyMembers.push(player);
     })
     if(!alreadyChecked){
       alreadyChecked = true;
@@ -85,6 +85,7 @@ bot.on('message', function (messageJson) {
               if(status.session.gametype != undefined && (status.session.gametype == "BEDWARS")){*/
         partyMembers.forEach(val => {
           getJSON("api.mojang.com/users/profiles/minecraft/" + val, (error, response) => {
+            console.log("hi2");
             console.log(response);
             if(error) {
               console.log(error);
