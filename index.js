@@ -58,7 +58,7 @@ bot.on('message', function (messageJson) {
     if(message.includes(":")) return;
     partyQue.push(message.split(" ")[0]);
     if(partyQue.length == 1){
-      
+      startParty();
     }
   } else if((message.startsWith("Party Leader") || message.startsWith("Party Moderator") || message.startsWith("Party Member")) && gettingMembers){
     let players = message.split(":")[1].split(" ");
@@ -150,7 +150,7 @@ function getStats(sender, args){
     if(!obj.success) return sendMessage(sender, "Invalid player");
     if(obj.player == null || obj.player.stats == null) return sendMessage(sender, "The bot encountered a temporary problem, please try again");
     let stats = obj.player.stats[gamemode];
-    console.log(stats);
+    //console.log(stats);
     if(stats == undefined) return sendMessage(sender, "Invalid gamemode");
     switch(gamemode){
       case("Duels"):{
@@ -191,7 +191,8 @@ function capitalize(string){
 }
 
 function startParty(){
-  bot._client.write("chat", {message:"/party join " + partyQue[0]})
+  console.log({message:"/party accepty " + partyQue[0]});
+  bot._client.write("chat", {message:"/party accepty " + partyQue[0]})
   gettingMembers = true;
   bot._client.write("chat", {message:"/party list"})
 }
