@@ -61,14 +61,14 @@ bot.on('message', function (messageJson) {
       
     }
   } else if((message.startsWith("Party Leader") || message.startsWith("Party Moderator") || message.startsWith("Party Member")) && gettingMembers){
-    let player = message.split(":")[1].split(" ")[1];
-    if(message.split(":")[1].includes("[")) player = message.split(":")[1].split(" ")[2];
-    if(player != bot.username) partyMembers.push(player);
+    let players = message.split(":")[1].split(", ");
+    players.forEach(player => {
+      if(player != bot.username) partyMembers.push(player);
+    })
     if(!alreadyChecked){
       alreadyChecked = true;
       setTimeout(() => {
         bot._client.write("chat", {message:"/ch p"})
-        bot._client.write("chat", {message:""})
         
         /*getJSON("https://api.mojang.com/users/profiles/minecraft/" + partyMembers[0], (error, response) => {
           if(error) console.log(error);
@@ -79,15 +79,19 @@ bot.on('message', function (messageJson) {
               if(status.session.gametype != undefined && (status.session.gametype == "BEDWARS")){*/
         partyMembers.forEach(val => {
           getJSON("https://api.mojang.com/users/profiles/minecraft/" + val, (error, response) => {
-            if(error) console.log(error);
-            else {
+            if(error) {
+              console.log(error);
+              nextParty();
+            } else {
               getJSON(`https://api.hypixel.net/status?key=${process.env.APIKEY}&uuid=${response.id}`, (error, status) => {
-                if(error) console.log(error);
-                else {
+                if(error) {
+                  console.log(error);
+                  nextParty();
+                } else {
                   hypixel.getPlayerByUuid(process.env.APIKEY, response.id).then(obj => {
                     let gamemode = capitalize(status.session.gametype)
                     if(gamemode == "Skywars") gamemode = "SkyWars";
-                    let stats = obj.player.stats[gamemode]
+                    let stats = obj.player.stats[gamemode];
                     switch(gamemode){
                         case("Bedwars"):{
                           break;
@@ -98,12 +102,7 @@ bot.on('message', function (messageJson) {
                       }
                     }
                     if(partyMembers.indexOf(val) == (partyMembers.length - 1)){
-                      alreadyChecked = false;
-                      partyMembers = []
-                      gettingMembers = false;
-                      partyQue.shift()
-                      bot._client.write("chat", {message:"/party leave"})
-                      if(partyQue.length != 0) startParty();
+                      nextParty();
                     }
                   })
                 }
@@ -187,4 +186,13 @@ function startParty(){
   bot._client.write("chat", {message:"/party join " + partyQue[0]})
   gettingMembers = true;
   bot._client.write("chat", {message:"/party list"})
+}
+
+function nextParty(){
+  alreadyChecked = false;
+  partyMembers = []
+  gettingMembers = false;
+  partyQue.shift()
+  bot._client.write("chat", {message:"/party leave"})
+  if(partyQue.length != 0) startParty();
 }
