@@ -72,7 +72,6 @@ bot.on('message', function (messageJson) {
     if(!alreadyChecked){
       alreadyChecked = true;
       setTimeout(() => {
-        bot._client.write("chat", {message:"/ch p"})
         
         /*getJSON("https://api.mojang.com/users/profiles/minecraft/" + partyMembers[0], (error, response) => {
           if(error) console.log(error);
@@ -96,17 +95,18 @@ bot.on('message', function (messageJson) {
                     let gamemode = capitalize(status.session.gametype)
                     if(gamemode == "Skywars") gamemode = "SkyWars";
                     if(obj.player == null || obj.player.stats == null){
-                      
+                      console.log({message:"/pchat The bot encountered a temporary problem, please try again"})
                       nextParty();
                       return;
                     }
                     let stats = obj.player.stats[gamemode];
                     switch(gamemode){
                         case("Bedwars"):{
+                          console.log({message:`/pchat ${val} - Level: ${obj.player.achievements.level_bedwars}, WS: ${stats.winstreak}, Finals: ${stats.final_kills_bedwars}, FKDR: ${Number.parseFloat(stats.final_kills_bedwars/stats.final_deaths_bedwars).toFixed(2)}, Wins: ${stats.wins_bedwars}`})
                           break;
                         }
                       default:{
-                        bot._client.write("chat", {message:"Unfortunately, this gamemode is not yet supported"})
+                        console.log({message:"/pchat Unfortunately, this gamemode is not yet supported"})
                         break;
                       }
                     }
@@ -151,7 +151,6 @@ function getStats(sender, args){
     if(obj.player == null || obj.player.stats == null) return sendMessage(sender, "The bot encountered a temporary problem, please try again");
     let stats = obj.player.stats[gamemode];
     console.log(stats);
-    console.log(obj)
     if(stats == undefined) return sendMessage(sender, "Invalid gamemode");
     switch(gamemode){
       case("Duels"):{
@@ -159,7 +158,7 @@ function getStats(sender, args){
         break;
       }
       case("Bedwars"):{
-        sendMessage(sender, `${player}'s ${gamemode} stats - Level: ${obj.player.achievements.bedwars_level}, XP: ${stats.Experience}, Finals Kills: ${stats.final_kills_bedwars}, Final Deaths: ${stats.final_deaths_bedwars}, Kills: ${stats.kills_bedwars}, Deaths: ${stats.deaths_bedwars}, Wins: ${stats.wins_bedwars}, Losses: ${stats.losses_bedwars}` +
+        sendMessage(sender, `${player}'s ${gamemode} stats - Level: ${obj.player.achievements.bedwars_level}, XP: ${stats.Experience}, WS: ${stats.winstreak}, Finals Kills: ${stats.final_kills_bedwars}, Final Deaths: ${stats.final_deaths_bedwars}, Kills: ${stats.kills_bedwars}, Deaths: ${stats.deaths_bedwars}, Wins: ${stats.wins_bedwars}, Losses: ${stats.losses_bedwars}` +
                    `, FKDR: ${Number.parseFloat(stats.final_kills_bedwars/stats.final_deaths_bedwars).toFixed(2)}, WLR: ${Number.parseFloat(stats.wins_bedwars/stats.losses_bedwars).toFixed(2)}`)
         break;
       }
