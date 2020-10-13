@@ -6,7 +6,6 @@ let partyQue = [];
 let gettingMembers = false;
 let partyMembers = [];
 let alreadyChecked = false;
-let partyGamemode = null;
 
 const bot = mineflayer.createBot({
   host: 'mc.hypixel.net', // optional
@@ -68,12 +67,12 @@ bot.on('message', function (messageJson) {
     let players = message.split(":")[1].split(" ");
     players.shift();
     players = players.join(" ");
-    players = players.split(" ●");
-    console.log(players);
+    players = players.split(" ● ");
     players.forEach(player => {
-      console.log(player);
-      if(player.includes("[")) player = player.split(" ")[2];
-      else player = player.split(" ")[1];
+      if(player == "") return;
+      if(player.includes(" ●")) player.replace(" ●", "");
+      if(player.includes("[")) player = player.split(" ")[1];
+      else player = player.split(" ")[0];
       if(player != "DevTM") partyMembers.push(player);
     })
     if(!alreadyChecked){
@@ -99,35 +98,30 @@ bot.on('message', function (messageJson) {
                 } else {
                   //console.log(status);
                   hypixel.getPlayerByUuid(process.env.APIKEY, response.id).then(obj => {
-                    let gamemode = partyGamemode;
-                    if(i == 0){
-                      let gamemode = capitalize(status.session.gameType)
-                      partyGamemode = gamemode;
-                      if(gamemode == "Skywars") gamemode = "SkyWars";
-                    }
+                    let gamemode = capitalize(status.session.gameType)
+                    if(gamemode == "Skywars") gamemode = "SkyWars";
                     if(obj.player == null || obj.player.stats == null){
                       bot._client.write("chat", {message:"/pchat The bot encountered a temporary problem, please try again"})
                       nextParty();
                       return;
                     }
                     let stats = obj.player.stats[gamemode];
-                    if(i == 0) bot._client.write("chat", {message:`/pchat ${gamemode} Stats:`})
                     setTimeout(() => {
                     switch(gamemode){
                         case("Bedwars"):{
-                          bot._client.write("chat", {message:`/pchat ${val} - Level: ${obj.player.achievements.bedwars_level}, WS: ${stats.winstreak}, Finals: ${stats.final_kills_bedwars}, FKDR: ${Number.parseFloat(stats.final_kills_bedwars/stats.final_deaths_bedwars).toFixed(2)}, Wins: ${stats.wins_bedwars}`})
+                          bot._client.write("chat", {message:`/pchat ${val}'s ${gamemode} Stats - Level: ${obj.player.achievements.bedwars_level}, WS: ${stats.winstreak}, Finals: ${stats.final_kills_bedwars}, FKDR: ${Number.parseFloat(stats.final_kills_bedwars/stats.final_deaths_bedwars).toFixed(2)}, Wins: ${stats.wins_bedwars}`})
                           break;
                         }
                         case("SkyWars"):{
-                          bot._client.write("chat", {message:`/pchat ${val} - Level: ${obj.player.achievements.skywars_you_re_a_star}, WS: ${stats.winstreak}, Wins: ${stats.wins}, Kills: ${stats.kills}, WLR: ${Number.parseFloat(stats.wins/stats.losses).toFixed(2)}, KDR: ${Number.parseFloat(stats.kills/stats.deaths).toFixed(2)}`});
+                          bot._client.write("chat", {message:`/pchat ${val}'s ${gamemode} Stats - Level: ${obj.player.achievements.skywars_you_re_a_star}, WS: ${stats.winstreak}, Wins: ${stats.wins}, Kills: ${stats.kills}, WLR: ${Number.parseFloat(stats.wins/stats.losses).toFixed(2)}, KDR: ${Number.parseFloat(stats.kills/stats.deaths).toFixed(2)}`});
                           break;
                         }
                         case("Duels"):{
-                          bot._client.write("chat", {message:`/pchat ${val} - WS: ${stats.current_winstreak}, Wins: ${stats.wins}, Kills: ${stats.kills}, WLR: ${Number.parseFloat(stats.wins/stats.losses).toFixed(2)}, KDR: ${Number.parseFloat(stats.kills/stats.deaths).toFixed(2)}`})
+                          bot._client.write("chat", {message:`/pchat ${val}'s ${gamemode} Stats - WS: ${stats.current_winstreak}, Wins: ${stats.wins}, Kills: ${stats.kills}, WLR: ${Number.parseFloat(stats.wins/stats.losses).toFixed(2)}, KDR: ${Number.parseFloat(stats.kills/stats.deaths).toFixed(2)}`})
                           break;
                         }
                       default:{
-                        bot._client.write("chat", {message:"/pchat Unfortunately, this gamemode is not yet supported"})
+                        bot._client.write("chat", {message:"/pchat Unfortunately, the " + gamemode + " gamemode is not yet supported"})
                         break;
                       }
                     }
@@ -230,7 +224,6 @@ function nextParty(){
   partyMembers = []
   gettingMembers = false;
   partyQue.shift()
-  partyGamemode = null;
   setTimeout(() => {
     bot._client.write("chat", {message:"/party leave"})
   }, 2000);
