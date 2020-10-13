@@ -94,6 +94,7 @@ bot.on('message', function (messageJson) {
                   console.log(error);
                   nextParty();
                 } else {
+                  console.log(status);
                   hypixel.getPlayerByUuid(process.env.APIKEY, response.id).then(obj => {
                     let gamemode = capitalize(status.session.gameType)
                     if(gamemode == "Skywars") gamemode = "SkyWars";
@@ -106,6 +107,14 @@ bot.on('message', function (messageJson) {
                     switch(gamemode){
                         case("Bedwars"):{
                           console.log({message:`/pchat ${val} - Level: ${obj.player.achievements.bedwars_level}, WS: ${stats.winstreak}, Finals: ${stats.final_kills_bedwars}, FKDR: ${Number.parseFloat(stats.final_kills_bedwars/stats.final_deaths_bedwars).toFixed(2)}, Wins: ${stats.wins_bedwars}`})
+                          break;
+                        }
+                        case("SkyWars"):{
+                          console.log({message:`/pchat ${val} - Level: ${obj.player.achievmenets.skywars_you_re_a_star}, WS: ${stats.winstreak}, Wins: ${stats.wins}, Kills: ${stats.kills}, WLR: ${Number.parseFloat(stats.wins/stats.losses).toFixed(2)}, KDR: ${Number.parseFloat(stats.kills/stats.deaths).toFixed(2)}`});
+                          break;
+                        }
+                        case("Duels"):{
+                          console.log({message:`/pchat ${val} - WS: ${stats.current_winstreak}, Wins: ${stats.wins}, Kills: ${stats.kills}, WLR: ${Number.parseFloat(stats.wins/stats.losses).toFixed(2)}, KDR: ${Number.parseFloat(stats.kills/stats.deaths).toFixed(2)}`})
                           break;
                         }
                       default:{
