@@ -59,6 +59,16 @@ bot.on('message', function (messageJson) {
     if(partyQue.length == 1){
       
     }
+  } else if((message.startsWith("Party Leader") || message.starsWith("Party Moderator") || message.startsWith("Party Member")) && gettingMembers){
+    let player = message.split(":")[1].split(" ")[1];
+    if(message.split(":")[1].includes("[")) player = message.split(":")[1].split(" ")[2];
+    partyMembers.push(player);
+    if(!alreadyChecked){
+      alreadyChecked = true;
+      setTimeout(() => {
+        
+      }, 2500)
+    }
   }
 })
 
