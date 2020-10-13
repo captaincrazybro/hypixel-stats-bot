@@ -8,7 +8,7 @@ let partyMembers = [];
 let alreadyChecked = false;
 
 const bot = mineflayer.createBot({
-  host: //'mc.hypixel.net', // optional
+  host: 'mc.hypixel.net', // optional
   port: 25565,       // optional
   username: process.env.EMAIL, // email and password are required only for
   password: process.env.PASSWORD,          // online-mode=true servers
@@ -99,27 +99,27 @@ bot.on('message', function (messageJson) {
                     let gamemode = capitalize(status.session.gameType)
                     if(gamemode == "Skywars") gamemode = "SkyWars";
                     if(obj.player == null || obj.player.stats == null){
-                      console.log({message:"/pchat The bot encountered a temporary problem, please try again"})
+                      bot._client.write("chat", {message:"/pchat The bot encountered a temporary problem, please try again"})
                       nextParty();
                       return;
                     }
                     let stats = obj.player.stats[gamemode];
-                    if(i == 0) console.log({message:`/pchat ${gamemode} Stats:`})
+                    if(i == 0) bot._client.write("chat", {message:`/pchat ${gamemode} Stats:`})
                     switch(gamemode){
                         case("Bedwars"):{
-                          console.log({message:`/pchat ${val} - Level: ${obj.player.achievements.bedwars_level}, WS: ${stats.winstreak}, Finals: ${stats.final_kills_bedwars}, FKDR: ${Number.parseFloat(stats.final_kills_bedwars/stats.final_deaths_bedwars).toFixed(2)}, Wins: ${stats.wins_bedwars}`})
+                          bot._client.write("chat", {message:`/pchat ${val} - Level: ${obj.player.achievements.bedwars_level}, WS: ${stats.winstreak}, Finals: ${stats.final_kills_bedwars}, FKDR: ${Number.parseFloat(stats.final_kills_bedwars/stats.final_deaths_bedwars).toFixed(2)}, Wins: ${stats.wins_bedwars}`})
                           break;
                         }
                         case("SkyWars"):{
-                          console.log({message:`/pchat ${val} - Level: ${obj.player.achievements.skywars_you_re_a_star}, WS: ${stats.winstreak}, Wins: ${stats.wins}, Kills: ${stats.kills}, WLR: ${Number.parseFloat(stats.wins/stats.losses).toFixed(2)}, KDR: ${Number.parseFloat(stats.kills/stats.deaths).toFixed(2)}`});
+                          bot._client.write("chat", {message:`/pchat ${val} - Level: ${obj.player.achievements.skywars_you_re_a_star}, WS: ${stats.winstreak}, Wins: ${stats.wins}, Kills: ${stats.kills}, WLR: ${Number.parseFloat(stats.wins/stats.losses).toFixed(2)}, KDR: ${Number.parseFloat(stats.kills/stats.deaths).toFixed(2)}`});
                           break;
                         }
                         case("Duels"):{
-                          console.log({message:`/pchat ${val} - WS: ${stats.current_winstreak}, Wins: ${stats.wins}, Kills: ${stats.kills}, WLR: ${Number.parseFloat(stats.wins/stats.losses).toFixed(2)}, KDR: ${Number.parseFloat(stats.kills/stats.deaths).toFixed(2)}`})
+                          bot._client.write("chat", {message:`/pchat ${val} - WS: ${stats.current_winstreak}, Wins: ${stats.wins}, Kills: ${stats.kills}, WLR: ${Number.parseFloat(stats.wins/stats.losses).toFixed(2)}, KDR: ${Number.parseFloat(stats.kills/stats.deaths).toFixed(2)}`})
                           break;
                         }
                       default:{
-                        console.log({message:"/pchat Unfortunately, this gamemode is not yet supported"})
+                        bot._client.write("chat", {message:"/pchat Unfortunately, this gamemode is not yet supported"})
                         break;
                       }
                     }
@@ -193,8 +193,8 @@ function getStats(sender, args){
 }
 
 function sendMessage(username, message){
-  console.log(`To ${username}: ${message}`)
-  //bot._client.write("chat", {message:`/msg ${username} ${message}`});
+  //console.log(`To ${username}: ${message}`)
+  bot._client.write("chat", {message:`/msg ${username} ${message}`});
 }
 
 function capitalize(string){
@@ -208,7 +208,7 @@ setTimeout(() => {
 }, 2000);
 
 function startParty(){
-  console.log({message:"/party accept " + partyQue[0]});
+  bot._client.write("chat", {message:"/party accept " + partyQue[0]});
   bot._client.write("chat", {message:"/party accept " + partyQue[0]})
   gettingMembers = true;
   setTimeout(() => {
