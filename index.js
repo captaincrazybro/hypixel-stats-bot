@@ -26,7 +26,7 @@ bot.on('message', function (messageJson) {
         message += val.text;
       })
     }
-  //console.log(message);
+  console.log(message);
   if(messageJson.json.text == "From "){
     message = message.replace("From ", "");
     let sender;
@@ -181,8 +181,6 @@ function getStats(sender, args){
   
 }
 
-bot.chat("/p accept cqptain")
-
 function sendMessage(username, message){
   console.log(`To ${username}: ${message}`)
   //bot._client.write("chat", {message:`/msg ${username} ${message}`});
@@ -193,6 +191,10 @@ function capitalize(string){
   string = string.charAt(0).toUpperCase() + string.slice(1)
   return string;
 }
+
+setTimeout(() => {
+  bot._client.write("chat", {message:"/p leave"});
+}, 5000);
 
 function startParty(){
   console.log({message:"/party accept " + partyQue[0]});
