@@ -76,6 +76,7 @@ bot.on('message', function (messageJson) {
             getJSON(`https://api.hypixel.net/status?key=${process.env.APIKEY}&uuid=${response.id}`, (error, status) => {
               if(error) console.log(error);
               else {
+              if(status.session.gametype != undefined && (status.session.gametype == "BEDWARS")){
         partyMembers.forEach(val => {
           getJSON("https://api.mojang.com/users/profiles/minecraft/" + val, (error, response) => {
             if(error) console.log(error);
@@ -102,6 +103,13 @@ bot.on('message', function (messageJson) {
             }
           })
         });
+              } else {
+                bot_client.write("chat", {message:"Unfortunately, this gamemode is not yet support"})
+              }
+            }
+            })
+          }
+        })
       }, 2500)
     }
   }
