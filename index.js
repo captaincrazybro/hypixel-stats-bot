@@ -26,7 +26,7 @@ bot.on('message', function (messageJson) {
         message += val.text;
       })
     }
-  console.log(message);
+  //console.log(message);
   if(messageJson.json.text == "From "){
     message = message.replace("From ", "");
     let sender;
@@ -71,7 +71,7 @@ bot.on('message', function (messageJson) {
     players.forEach(player => {
       if(player.includes("[")) player = player.split(" ")[1];
       else player = player.split(" ")[0];
-      if(player != "statsbot") partyMembers.push(player);
+      if(player != "DevTM") partyMembers.push(player);
     })
     if(!alreadyChecked){
       alreadyChecked = true;
@@ -105,6 +105,7 @@ bot.on('message', function (messageJson) {
                     }
                     let stats = obj.player.stats[gamemode];
                     if(i == 0) bot._client.write("chat", {message:`/pchat ${gamemode} Stats:`})
+                    setTimeout(() => {
                     switch(gamemode){
                         case("Bedwars"):{
                           bot._client.write("chat", {message:`/pchat ${val} - Level: ${obj.player.achievements.bedwars_level}, WS: ${stats.winstreak}, Finals: ${stats.final_kills_bedwars}, FKDR: ${Number.parseFloat(stats.final_kills_bedwars/stats.final_deaths_bedwars).toFixed(2)}, Wins: ${stats.wins_bedwars}`})
@@ -123,6 +124,7 @@ bot.on('message', function (messageJson) {
                         break;
                       }
                     }
+                    }, 1000);
                     if(partyMembers.indexOf(val) == (partyMembers.length - 1)){
                       nextParty();
                     }
@@ -221,6 +223,8 @@ function nextParty(){
   partyMembers = []
   gettingMembers = false;
   partyQue.shift()
-  bot._client.write("chat", {message:"/party leave"})
+  setTimeout(() => {
+    bot._client.write("chat", {message:"/party leave"})
+  }, 2000);
   if(partyQue.length != 0) startParty();
 }
