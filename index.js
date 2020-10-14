@@ -14,8 +14,10 @@ app.listen(port, () => {
 })
 
 setInterval(() => {
-  getJSON("https://diligent-highfalutin-rayon.glitch.me/")
-})
+  getJSON("https://diligent-highfalutin-rayon.glitch.me", (error, response) => {
+    if(error) console.log(error);
+  })
+}, 300000)
 
 let partyQue = [];
 let gettingMembers = false;
