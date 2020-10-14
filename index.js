@@ -1,6 +1,21 @@
 const mineflayer = require('mineflayer')
 const hypixel = require('hypixel-api-nodejs');
 const getJSON = require('get-json')
+const express = require('express')
+const app = express()
+const port = 3000
+
+app.get('/', (req, res) => {
+  res.send({message:"App has kept alive",code:1,success:true})
+})
+
+app.listen(port, () => {
+  console.log(`Keep Alive app listening`)
+})
+
+setInterval(() => {
+  getJSON("https://diligent-highfalutin-rayon.glitch.me/")
+})
 
 let partyQue = [];
 let gettingMembers = false;
