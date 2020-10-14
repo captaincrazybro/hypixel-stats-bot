@@ -177,13 +177,16 @@ function getStats(sender, args){
   if(args.length == 1) player = sender;
   else player = args[1];
   
+  console.log('https://api.mojang.com/users/profiles/minecraft/' + player);
+  
   getJSON('https://api.mojang.com/users/profiles/minecraft/' + player, (error, response) => {
     if(error) {
       console.log(error);
       nextParty();
     } else {
+      console.log(response);
       hypixel.getPlayerByUuid(process.env.APIKEY, response.id).then(obj => {
-        console.log(obj);
+        //console.log(obj);
         if(!obj.success) {
           console.log("invalid player");
           return sendMessage(sender, "Invalid player - " + player + " is not a valid player");
