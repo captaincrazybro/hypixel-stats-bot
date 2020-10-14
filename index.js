@@ -43,7 +43,7 @@ bot.on('message', function (messageJson) {
         message += val.text;
       })
     }
-  //console.log(message);
+  console.log(message);
   if(messageJson.json.text == "From "){
     message = message.replace("From ", "");
     let sender;
@@ -178,13 +178,22 @@ function getStats(sender, args){
   else player = args[1];
   
   hypixel.getPlayerByName(process.env.APIKEY, player).then(obj => {
-    console.log("hi");
-    if(obj.player == null || !obj.success) return sendMessage(sender, "Invalid player");
-    if(obj.player.stats == null) return sendMessage(sender, "The bot encountered a temporary problem, please try again");
+    console.log(obj);
+    if(obj.player == null || !obj.success) {
+      console.log("invalid player");
+      return sendMessage(sender, "Invalid player");
+    }
+    if(obj.player.stats == null) {
+      console.log("temporary");
+      return sendMessage(sender, "The bot encountered a temporary problem, please try again");
+    }
     let stats = obj.player.stats[gamemode];
     //console.log(stats);
-    if(stats == undefined) return sendMessage(sender, "Invalid gamemode");
-    //player = obj.player.playername;
+    if(stats == undefined) {
+      console.log("gamemode invalid")
+      return sendMessage(sender, "Invalid gamemode");
+    }
+    player = obj.player.playername;
     switch(gamemode){
       case("Duels"):{
         console.log("duels");
@@ -206,6 +215,7 @@ function getStats(sender, args){
         break;
       }
       default:{
+        console.log("default");
         sendMessage(sender, `Unfortunately, stats for this gamemode are not yet supported`)
         break;
       }
