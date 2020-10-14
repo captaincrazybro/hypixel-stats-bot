@@ -179,13 +179,13 @@ function getStats(sender, args){
   
   console.log('https://api.mojang.com/users/profiles/minecraft/' + player);
   
-  getJSON('https://api.mojang.com/users/profiles/minecraft/' + player, (error, response) => {
+  /*getJSON('https://api.mojang.com/users/profiles/minecraft/' + player, (error, response) => {
     if(error) {
       console.log(error);
       nextParty();
     } else {
-      console.log(response);
-      hypixel.getPlayerByUuid(process.env.APIKEY, response.id).then(obj => {
+      console.log(response);*/
+      hypixel.getPlayerByUuid(process.env.APIKEY, player).then(obj => {
         //console.log(obj);
         if(!obj.success) {
           console.log("invalid player");
@@ -229,8 +229,8 @@ function getStats(sender, args){
           }
         }
       })
-    }
-  })
+    /*}
+  })*/
   
 }
 
