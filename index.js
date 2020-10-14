@@ -185,7 +185,7 @@ function getStats(sender, args){
       nextParty();
     } else {
       console.log(response);*/
-      hypixel.getPlayerByUuid(process.env.APIKEY, player).then(obj => {
+      hypixel.getPlayerByName(process.env.APIKEY, player).then(obj => {
         //console.log(obj);
         if(!obj.success) {
           console.log("invalid player");
