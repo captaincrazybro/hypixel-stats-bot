@@ -26,7 +26,7 @@ bot.on('message', function (messageJson) {
         message += val.text;
       })
     }
-  //console.log(message);
+  console.log(message);
   if(messageJson.json.text == "From "){
     message = message.replace("From ", "");
     let sender;
@@ -46,8 +46,6 @@ bot.on('message', function (messageJson) {
     
     if(args[0].toLowerCase() == "help"){
       sendMessage(sender, "List of commands: <gamemode> [player], about");
-    } else if(args[0].toLowerCase() == "who" || args[0].toLowerCase() == "list"){
-      sendMessage(sender, "Coming soon... :)")
     } else if(args[0].toLowerCase() == "about" || args[0].toLowerCase() == "author"){
       sendMessage(sender, "Made by cqptain, Repo - https://github.com/captaincrazybro/hypixel-stats-bot");
     } else {
