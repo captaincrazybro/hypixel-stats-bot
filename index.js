@@ -26,7 +26,7 @@ bot.on('message', function (messageJson) {
         message += val.text;
       })
     }
-  console.log(message);
+  //console.log(message);
   if(messageJson.json.text == "From "){
     message = message.replace("From ", "");
     let sender;
