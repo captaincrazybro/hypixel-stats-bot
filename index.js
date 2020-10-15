@@ -44,7 +44,7 @@ bot.on('message', function (messageJson) {
         message += val.text;
       })
     }
-  console.log(message);
+  //console.log(message);
   if(messageJson.json.text == "From "){
     message = message.replace("From ", "");
     let sender;
@@ -178,15 +178,15 @@ function getStats(sender, args){
   if(args.length == 1) player = sender;
   else player = args[1];
   
-  console.log('https://api.mojang.com/users/profiles/minecraft/' + player);
-  
   /*getJSON('https://api.mojang.com/users/profiles/minecraft/' + player, (error, response) => {
     if(error) {
       console.log(error);
       nextParty();
     } else {
       console.log(response);*/
-      hypixel.getPlayerByName(process.env.APIKEY, player).then(obj => {
+      MinecraftAPI.uuidForName(player).then(uuid => {
+        console.log(uuid);
+      hypixel.getPlayerByUuid(process.env.APIKEY, uuid).then(obj => {
         //console.log(obj);
         if(!obj.success) {
           console.log("invalid player");
@@ -229,9 +229,12 @@ function getStats(sender, args){
             break;
           }
         }
+      }).catch(err => {
+        console.log(err);
+        sendMessage(sender, `An error occured while fetching ${player}'s stats'`);
       })
-    /*}
-  })*/
+    //}
+  })
   
 }
 
