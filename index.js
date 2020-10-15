@@ -4,6 +4,7 @@ const getJSON = require('get-json')
 const express = require('express')
 const app = express()
 const port = 3000
+const MinecraftAPI = require('minecraft-api');
 
 app.get('/', (req, res) => {
   res.send({message:"App has kept alive",code:1,success:true})
