@@ -43,7 +43,7 @@ bot.on('message', function (messageJson) {
         message += val.text;
       })
     }
-  console.log(message);
+  //console.log(message);
   if(messageJson.json.text == "From "){
     message = message.replace("From ", "");
     let sender;
@@ -177,7 +177,7 @@ function getStats(sender, args){
   if(args.length == 1) player = sender;
   else player = args[1];
   
-  console.log('https://api.mojang.com/users/profiles/minecraft/' + player);
+  //console.log('https://api.mojang.com/users/profiles/minecraft/' + player);
   
   /*getJSON('https://api.mojang.com/users/profiles/minecraft/' + player, (error, response) => {
     if(error) {
