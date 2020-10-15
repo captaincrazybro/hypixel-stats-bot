@@ -43,7 +43,7 @@ bot.on('message', function (messageJson) {
         message += val.text;
       })
     }
-  //console.log(message);
+  console.log(message);
   if(messageJson.json.text == "From "){
     message = message.replace("From ", "");
     let sender;
@@ -69,7 +69,7 @@ bot.on('message', function (messageJson) {
       getStats(sender, args);
     }
     
-  } else if(message.includes("has invited you to join their party!")){
+  } else if(message.includes("has invited you to join")){
     if(message.includes(":")) return;
     let player = message.split("\n")[1].split(" ")[0];
     if(player.includes("[")) player = message.split("\n")[1].split(" ")[1];
