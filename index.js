@@ -17,7 +17,7 @@ setInterval(() => {
   getJSON("https://diligent-highfalutin-rayon.glitch.me", (error, response) => {
     if(error) console.log(error);
   })
-}, 300000)
+}, 200000)
 
 let partyQue = [];
 let gettingMembers = false;
@@ -88,7 +88,7 @@ bot.on('message', function (messageJson) {
       if(player.includes(" ●")) player.replace(" ●", "");
       if(player.includes("[")) player = player.split(" ")[1];
       else player = player.split(" ")[0];
-      if(player != "DevTM") partyMembers.push(player);
+      if(player != "statsbot") partyMembers.push(player);
     })
     if(!alreadyChecked){
       alreadyChecked = true;
