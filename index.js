@@ -124,7 +124,7 @@ bot.on('message', function (messageJson) {
                     setTimeout(() => {
                     switch(gamemode){
                         case("Bedwars"):{
-                          bot._client.write("chat", {message:`/pchat ${val}'s ${gamemode} Stats - Level: ${obj.player.achievements.bedwars_level}, WS: ${stats.winstreak}, Finals: ${stats.final_kills_bedwars}, FKDR: ${Number.parseFloat(stats.final_kills_bedwars/stats.final_deaths_bedwars).toFixed(2)}, Wins: ${stats.wins_bedwars}, Beds: ${stats.beds}`})
+                          bot._client.write("chat", {message:`/pchat ${val}'s ${gamemode} Stats - Level: ${obj.player.achievements.bedwars_level}, WS: ${stats.winstreak}, Finals: ${stats.final_kills_bedwars}, FKDR: ${Number.parseFloat(stats.final_kills_bedwars/stats.final_deaths_bedwars).toFixed(2)}, Wins: ${stats.wins_bedwars}, Beds: ${stats.beds_broken_bedwars}`})
                           break;
                         }
                         case("SkyWars"):{
@@ -210,7 +210,7 @@ function getStats(sender, args){
           }
           case("Bedwars"):{
             console.log("bedwars");
-            sendMessage(sender, `${player}'s ${gamemode} stats - Level: ${obj.player.achievements.bedwars_level}, XP: ${stats.Experience}, WS: ${stats.winstreak}, Finals Kills: ${stats.final_kills_bedwars}, Final Deaths: ${stats.final_deaths_bedwars}, Kills: ${stats.kills_bedwars}, Deaths: ${stats.deaths_bedwars}, Wins: ${stats.wins_bedwars}, Losses: ${stats.losses_bedwars}` +
+            sendMessage(sender, `${player}'s ${gamemode} stats - Level: ${obj.player.achievements.bedwars_level}, XP: ${stats.Experience}, WS: ${stats.winstreak}, Finals Kills: ${stats.final_kills_bedwars}, Final Deaths: ${stats.final_deaths_bedwars}, Kills: ${stats.kills_bedwars}, Deaths: ${stats.deaths_bedwars}, Wins: ${stats.wins_bedwars}, Losses: ${stats.losses_bedwars}, Beds: ${stats.beds_broken_bedwars}` +
                        `, FKDR: ${Number.parseFloat(stats.final_kills_bedwars/stats.final_deaths_bedwars).toFixed(2)}, WLR: ${Number.parseFloat(stats.wins_bedwars/stats.losses_bedwars).toFixed(2)}`)
             break;
           }
