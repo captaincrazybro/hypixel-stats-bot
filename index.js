@@ -124,7 +124,7 @@ bot.on('message', function (messageJson) {
                     setTimeout(() => {
                     switch(gamemode){
                         case("Bedwars"):{
-                          bot._client.write("chat", {message:`/pchat ${val}'s ${gamemode} Stats - Level: ${obj.player.achievements.bedwars_level}, WS: ${stats.winstreak}, Finals: ${stats.final_kills_bedwars}, FKDR: ${Number.parseFloat(stats.final_kills_bedwars/stats.final_deaths_bedwars).toFixed(2)}, Wins: ${stats.wins_bedwars}`})
+                          bot._client.write("chat", {message:`/pchat ${val}'s ${gamemode} Stats - Level: ${obj.player.achievements.bedwars_level}, WS: ${stats.winstreak}, Finals: ${stats.final_kills_bedwars}, FKDR: ${Number.parseFloat(stats.final_kills_bedwars/stats.final_deaths_bedwars).toFixed(2)}, Wins: ${stats.wins_bedwars}, Beds: ${stats.beds}`})
                           break;
                         }
                         case("SkyWars"):{
