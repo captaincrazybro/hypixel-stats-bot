@@ -140,9 +140,11 @@ bot.on('message', function (messageJson) {
                         break;
                       }
                     }
-                    }, (1000 + i * 1000));
+                    }, 1000 + i * 500);
                     if(i == (partyMembers.length - 1)){
-                      nextParty();
+                      setTimeout(() => {
+                        nextParty();
+                      }, 2500);
                     }
                   })
                 }
