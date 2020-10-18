@@ -257,7 +257,7 @@ function startParty(){
   gettingMembers = true;
   setTimeout(() => {
     bot._client.write("chat", {message:"/party list"})
-  }, 2000);
+  }, 1000);
 }
 
 function nextParty(){
@@ -267,6 +267,6 @@ function nextParty(){
   partyQue.shift()
   setTimeout(() => {
     bot._client.write("chat", {message:"/party leave"})
-  }, 2000);
+  }, 1000);
   if(partyQue.length != 0) startParty();
 }
