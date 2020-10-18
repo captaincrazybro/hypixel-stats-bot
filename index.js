@@ -140,7 +140,7 @@ bot.on('message', function (messageJson) {
                         break;
                       }
                     }
-                    }, 1000);
+                    }, 1000 + i * 1000);
                     if(partyMembers.indexOf(val) == (partyMembers.length - 1)){
                       nextParty();
                     }
