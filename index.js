@@ -132,7 +132,9 @@ function runBot() {
                 if(status.session.gametype != undefined && (status.session.gametype == "BEDWARS")){*/
           let success = false;
           partyMembers.forEach((val, i) => {
-            getJSON('https://api.mojang.com/users/profiles/minecraft/' + val, (error, response) => {
+            let theVal = val.replace("§f", "");
+            theVal.replace("§7", "");
+            getJSON('https://api.mojang.com/users/profiles/minecraft/' + theVal, (error, response) => {
               if(error) {
                 console.log(error);
                 nextParty();
