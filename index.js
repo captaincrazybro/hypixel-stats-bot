@@ -118,7 +118,7 @@ function runBot() {
         if(player.includes(" ●")) player.replace(" ●", "");
         if(player.includes("[")) player = player.split(" ")[1];
         else player = player.split(" ")[0];
-        if(player != "statsbot") partyMembers.push(player);
+        if(player != bot.username) partyMembers.push(player);
       })
       if(!alreadyChecked){
         alreadyChecked = true;
